@@ -1,6 +1,6 @@
 /**
  * Vanguard & Prado Advogados Associados
- * Lógica Interativa: Menu Mobile, Acordeão FAQ, Diagnóstico e WhatsApp
+ * Lógica Interativa: Menu Mobile, Acordeão FAQ, Diagnóstico, Contador Dinâmico e WhatsApp
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,7 +27,80 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. FAQ ACORDEÃO (ACESSIBILIDADE & ANIMAÇÃO SUAVE)
+     2. ANIMAÇÃO CLÁSSICA DE CONTAGEM PROGRESSIVA (COUNT-UP STATS)
+     ========================================================================== */
+  const statsGrid = document.getElementById('statsGrid');
+  const counterElements = document.querySelectorAll('.trust-number[data-target]');
+  let hasAnimatedStats = false;
+
+  function animateCounters() {
+    counterElements.forEach(el => {
+      const target = parseFloat(el.getAttribute('data-target'));
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      const isLocale = el.getAttribute('data-format') === 'locale';
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      
+      const duration = 2000; // 2 segundos
+      const startTime = performance.now();
+
+      function updateCounter(currentTime) {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+
+        // Efeito de aceleração/desaceleração clássica (easeOutExpo)
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const currentValue = (target * easeProgress);
+
+        let formattedValue = '';
+        if (decimals > 0) {
+          formattedValue = currentValue.toFixed(decimals).replace('.', ',');
+        } else if (isLocale) {
+          formattedValue = Math.floor(currentValue).toLocaleString('pt-BR');
+        } else {
+          formattedValue = Math.floor(currentValue).toString();
+        }
+
+        el.textContent = `${prefix}${formattedValue}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          // Garante valor final exato
+          if (decimals > 0) {
+            el.textContent = `${prefix}${target.toFixed(decimals).replace('.', ',')}${suffix}`;
+          } else if (isLocale) {
+            el.textContent = `${prefix}${target.toLocaleString('pt-BR')}${suffix}`;
+          } else {
+            el.textContent = `${prefix}${target}${suffix}`;
+          }
+        }
+      }
+
+      requestAnimationFrame(updateCounter);
+    });
+  }
+
+  // Aciona a contagem assim que o bloco entra no campo visual
+  if (statsGrid && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimatedStats) {
+          hasAnimatedStats = true;
+          animateCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(statsGrid);
+  } else {
+    // Fallback se não suportar observer
+    animateCounters();
+  }
+
+  /* ==========================================================================
+     3. FAQ ACORDEÃO (ACESSIBILIDADE & ANIMAÇÃO SUAVE)
      ========================================================================== */
   const accordionItems = document.querySelectorAll('.accordion-item');
 
@@ -57,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     3. MÁSCARA INTELIGENTE DE TELEFONE / WHATSAPP
+     4. MÁSCARA INTELIGENTE DE TELEFONE / WHATSAPP
      ========================================================================== */
   const phoneInput = document.getElementById('clientPhone');
 
@@ -80,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. FORMULÁRIO DE DIAGNÓSTICO JURÍDICO & REDIRECIONAMENTO WHATSAPP
+     5. FORMULÁRIO DE DIAGNÓSTICO JURÍDICO & REDIRECIONAMENTO WHATSAPP
      ========================================================================== */
   const diagnosisForm = document.getElementById('diagnosisForm');
 
@@ -112,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. SCROLL SUAVE PARA LINKS INTERNOS
+     6. SCROLL SUAVE PARA LINKS INTERNOS
      ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {

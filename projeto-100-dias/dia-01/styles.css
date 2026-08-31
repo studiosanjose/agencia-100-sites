@@ -5,14 +5,15 @@
   /* Paleta Dark Luxury & Gold */
   --bg-main: #090e17;
   --bg-alt: #0d1522;
-  --bg-card: rgba(18, 26, 41, 0.75);
-  --bg-card-hover: rgba(24, 35, 56, 0.9);
+  --bg-card: rgba(18, 26, 41, 0.78);
+  --bg-card-hover: rgba(26, 38, 60, 0.95);
   
   /* Acentos Dourados & Metálicos */
   --gold-primary: #c5a059;
-  --gold-light: #dfba73;
+  --gold-light: #e2c283;
   --gold-dark: #9b7a37;
-  --gold-gradient: linear-gradient(135deg, #dfba73 0%, #c5a059 50%, #9b7a37 100%);
+  --gold-gradient: linear-gradient(135deg, #f3d999 0%, #c5a059 50%, #9b7a37 100%);
+  --gold-glow: 0 0 25px rgba(197, 160, 89, 0.35);
   
   /* Textos & Contrastes */
   --text-primary: #f8fafc;
@@ -21,10 +22,10 @@
   
   /* Bordas e Efeitos Glassmorphism */
   --border-light: rgba(255, 255, 255, 0.08);
-  --border-gold: rgba(197, 160, 89, 0.35);
+  --border-gold: rgba(197, 160, 89, 0.4);
   --glass-blur: blur(16px);
-  --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  --shadow-gold: 0 12px 30px rgba(197, 160, 89, 0.2);
+  --shadow-subtle: 0 12px 36px -10px rgba(0, 0, 0, 0.7);
+  --shadow-gold: 0 12px 30px rgba(197, 160, 89, 0.25);
   
   /* Tipografia */
   --font-serif: 'Cinzel', Georgia, serif;
@@ -33,7 +34,7 @@
   /* Transições & Raios */
   --radius-sm: 8px;
   --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-lg: 22px;
   --radius-full: 9999px;
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -57,10 +58,6 @@ body {
   font-family: var(--font-sans);
   line-height: 1.65;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(197, 160, 89, 0.06) 0%, transparent 40%),
-    radial-gradient(circle at 90% 70%, rgba(79, 172, 254, 0.04) 0%, transparent 50%);
-  background-attachment: fixed;
 }
 
 .container {
@@ -95,7 +92,7 @@ h1, h2, h3, h4 {
 
 .section-header {
   text-align: center;
-  max-width: 720px;
+  max-width: 740px;
   margin: 0 auto 60px;
 }
 
@@ -124,7 +121,7 @@ h1, h2, h3, h4 {
    TOP BAR
    ========================================================================== */
 .top-bar {
-  background: rgba(9, 14, 23, 0.95);
+  background: rgba(6, 10, 18, 0.98);
   border-bottom: 1px solid var(--border-light);
   font-size: 0.82rem;
   color: var(--text-secondary);
@@ -168,16 +165,16 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   SITE HEADER & NAVBAR
+   SITE HEADER & NAVBAR (LAYOUT CORRIGIDO ANTI-SOBREPOSIÇÃO)
    ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(9, 14, 23, 0.85);
+  background: rgba(9, 14, 23, 0.92);
   backdrop-filter: var(--glass-blur);
   border-bottom: 1px solid var(--border-light);
-  padding: 18px 0;
+  padding: 16px 0;
   transition: var(--transition-smooth);
 }
 
@@ -185,50 +182,55 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-decoration: none;
   color: var(--text-primary);
+  flex-shrink: 0;
 }
 
 .logo-icon {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   stroke: var(--gold-primary);
 }
 
 .brand-name {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.08rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   display: block;
 }
 
 .brand-sub {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  letter-spacing: 2px;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
   color: var(--gold-primary);
   display: block;
 }
 
 .nav-menu {
   display: flex;
-  gap: 32px;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
   text-decoration: none;
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
   transition: var(--transition-smooth);
-  position: relative;
+  white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -239,7 +241,14 @@ h1, h2, h3, h4 {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn-header {
+  white-space: nowrap;
+  padding: 9px 18px;
+  font-size: 0.85rem;
 }
 
 .mobile-toggle {
@@ -294,35 +303,54 @@ h1, h2, h3, h4 {
   background: var(--gold-gradient);
   color: #090e17;
   box-shadow: var(--shadow-gold);
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 35px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 16px 35px rgba(197, 160, 89, 0.4);
 }
 
 .btn-outline {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-light);
   color: var(--text-primary);
 }
 
 .btn-outline:hover {
   border-color: var(--gold-primary);
-  background: rgba(197, 160, 89, 0.08);
+  background: rgba(197, 160, 89, 0.1);
+  color: var(--gold-light);
 }
 
 /* ==========================================================================
-   HERO SECTION
+   HERO SECTION COM BACKGROUND E OVERLAY
    ========================================================================== */
 .hero-section {
   padding: 90px 0 110px;
   position: relative;
+  background-image: url('assets/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(100deg, rgba(9, 14, 23, 0.98) 45%, rgba(9, 14, 23, 0.82) 100%);
+  z-index: 1;
 }
 
 .hero-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.25fr 0.75fr;
   gap: 50px;
   align-items: center;
 }
@@ -333,7 +361,7 @@ h1, h2, h3, h4 {
   gap: 8px;
   padding: 6px 16px;
   border-radius: var(--radius-full);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(197, 160, 89, 0.12);
   border: 1px solid var(--border-gold);
   color: var(--gold-light);
   font-size: 0.85rem;
@@ -368,6 +396,9 @@ h1, h2, h3, h4 {
   margin-bottom: 48px;
 }
 
+/* ==========================================================================
+   SELOS DE CREDIBILIDADE & ANIMAÇÃO CLÁSSICA (15 ANOS...)
+   ========================================================================== */
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -376,61 +407,153 @@ h1, h2, h3, h4 {
   padding-top: 32px;
 }
 
+.trust-item {
+  position: relative;
+}
+
+.trust-card-inner {
+  background: rgba(18, 26, 41, 0.6);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 14px 12px;
+  text-align: center;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(8px);
+}
+
+.trust-card-inner:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary);
+  box-shadow: 0 10px 25px -5px rgba(197, 160, 89, 0.25);
+  background: rgba(24, 35, 56, 0.85);
+}
+
 .trust-number {
   display: block;
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: 1.85rem;
   font-weight: 700;
   color: var(--gold-light);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 10px rgba(197, 160, 89, 0.3);
 }
 
 .trust-label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
+  line-height: 1.3;
 }
 
-/* Card Visual Flutuante */
+/* ==========================================================================
+   CARD FLUTUANTE DE ATENDIMENTO PRIORITÁRIO COM ANIMAÇÃO CLÁSSICA
+   ========================================================================== */
 .premium-card {
   background: var(--bg-card);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
-  padding: 40px;
+  padding: 38px;
   position: relative;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: var(--shadow-subtle), 0 0 30px rgba(197, 160, 89, 0.15);
+  overflow: hidden;
+}
+
+.animated-card {
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow-subtle), 0 0 30px rgba(197, 160, 89, 0.15);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-subtle), 0 15px 40px rgba(197, 160, 89, 0.25);
+  }
+}
+
+.card-shimmer {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 55%
+  );
+  animation: shimmerSweep 7s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+  0% { transform: translate(-100%, -100%); }
+  100% { transform: translate(100%, 100%); }
 }
 
 .card-header-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.4);
   color: #10b981;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.pulse-ring {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: radarPulse 2s infinite ease-out;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 .premium-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   margin-bottom: 12px;
 }
 
 .premium-card p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  margin-bottom: 24px;
+  font-size: 0.92rem;
+  margin-bottom: 22px;
 }
 
 .check-list {
   list-style: none;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
 .check-list li {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: #cbd5e1;
   margin-bottom: 10px;
 }
@@ -440,25 +563,28 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 14px;
   border-top: 1px solid var(--border-light);
-  padding-top: 20px;
+  padding-top: 18px;
 }
 
-.lawyer-avatar {
-  width: 46px;
-  height: 46px;
+.lawyer-avatar-img {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: var(--gold-gradient);
-  color: #090e17;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
+  object-fit: cover;
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+}
+
+.lawyer-preview strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #ffffff;
 }
 
 .lawyer-preview small {
   display: block;
   color: var(--text-secondary);
+  font-size: 0.8rem;
 }
 
 /* ==========================================================================
@@ -486,7 +612,7 @@ h1, h2, h3, h4 {
   transform: translateY(-6px);
   border-color: var(--border-gold);
   background: var(--bg-card-hover);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(197, 160, 89, 0.15);
 }
 
 .area-icon {
@@ -652,11 +778,11 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   SÓCIOS & CORPO JURÍDICO
+   SÓCIOS & CORPO JURÍDICO (FOTOS REAIS DE ALTO PADRÃO)
    ========================================================================== */
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
   gap: 36px;
 }
 
@@ -667,26 +793,36 @@ h1, h2, h3, h4 {
   padding: 36px;
   display: flex;
   gap: 28px;
+  align-items: center;
   backdrop-filter: var(--glass-blur);
+  transition: var(--transition-smooth);
+}
+
+.partner-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 160, 89, 0.15);
 }
 
 .partner-photo-box {
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(197, 160, 89, 0.3), rgba(18, 26, 41, 0.8));
+  overflow: hidden;
   border: 2px solid var(--gold-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 0 16px rgba(197, 160, 89, 0.35);
 }
 
-.partner-initials {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--gold-light);
+.partner-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.partner-card:hover .partner-photo {
+  transform: scale(1.06);
 }
 
 .partner-info h3 {
@@ -699,13 +835,14 @@ h1, h2, h3, h4 {
   color: var(--gold-primary);
   font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .partner-info p {
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   margin-bottom: 16px;
+  line-height: 1.5;
 }
 
 .partner-specialties {
@@ -932,7 +1069,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   BOTÃO FLUTUANTE DO WHATSAPP
+   BOTÃO FLUTUANTE DO WHATSAPP COM AVATAR
    ========================================================================== */
 .floating-whatsapp {
   position: fixed;
@@ -948,24 +1085,34 @@ h1, h2, h3, h4 {
 .whatsapp-badge {
   background: rgba(18, 26, 41, 0.95);
   border: 1px solid var(--border-gold);
-  padding: 5px 12px;
+  padding: 6px 14px 6px 6px;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   box-shadow: var(--shadow-subtle);
   animation: floatBounce 3s infinite ease-in-out;
 }
 
+.whatsapp-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold-primary);
+}
+
 .online-dot {
+  display: inline-block;
   width: 7px;
   height: 7px;
   background: #10b981;
   border-radius: 50%;
   box-shadow: 0 0 6px #10b981;
+  margin-right: 4px;
 }
 
 .whatsapp-btn {
@@ -991,9 +1138,47 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE (MOBILE & TABLETS)
+   RESPONSIVIDADE (MOBILE & LAPTOPS ANTI-SOBREPOSIÇÃO)
    ========================================================================== */
-@media (max-width: 992px) {
+@media (max-width: 1140px) {
+  .nav-menu {
+    gap: 14px;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+
+  .btn-header {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(9, 14, 23, 0.98);
+    backdrop-filter: var(--glass-blur);
+    flex-direction: column;
+    padding: 28px 24px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-gold);
+    display: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
   .hero-grid,
   .diagnosis-wrapper,
   .footer-grid {
@@ -1012,27 +1197,6 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-main);
-    flex-direction: column;
-    padding: 24px;
-    gap: 18px;
-    border-bottom: 1px solid var(--border-light);
-    display: none;
-  }
-
-  .nav-menu.open {
-    display: flex;
-  }
-
-  .mobile-toggle {
-    display: block;
-  }
-
   .trust-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1043,7 +1207,6 @@ h1, h2, h3, h4 {
 
   .partner-card {
     flex-direction: column;
-    align-items: center;
     text-align: center;
   }
 

@@ -13,7 +13,7 @@
   <!-- Fontes Google de Alto Padrão -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
 
@@ -24,9 +24,10 @@
     "@type": "LegalService",
     "name": "Vanguard & Prado Advogados Associados",
     "description": "Assessoria jurídica e advocacia estratégica empresarial, tributária, cível e trabalhista.",
-    "url": "https://studiosanjose.github.io/projeto-100-dias/dia-01/",
+    "url": "https://studiosanjose.github.io/agencia-100-sites/projeto-100-dias/dia-01/",
     "telephone": "+5511998765432",
     "priceRange": "$$$",
+    "image": "assets/hero-bg.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. Paulista, 2100 - Conj. 1402",
@@ -92,10 +93,10 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="https://wa.me/5511998765432?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+com+um+advogado+especialista." target="_blank" rel="noopener" class="btn btn-gold btn-sm">
+        <a href="https://wa.me/5511998765432?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+consulta+com+um+advogado+especialista." target="_blank" rel="noopener" class="btn btn-gold btn-sm btn-header">
           Falar com Advogado
         </a>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
@@ -106,6 +107,7 @@
 
   <!-- Hero Section -->
   <section class="hero-section" id="hero">
+    <div class="hero-bg-overlay"></div>
     <div class="container hero-grid">
       <div class="hero-content">
         <div class="hero-badge">
@@ -129,32 +131,43 @@
           </a>
         </div>
 
-        <!-- Selos de Credibilidade -->
-        <div class="trust-grid">
+        <!-- Selos de Credibilidade & Números com Animação Clássica -->
+        <div class="trust-grid" id="statsGrid">
           <div class="trust-item">
-            <span class="trust-number">+15</span>
-            <span class="trust-label">Anos de Experiência</span>
+            <div class="trust-card-inner">
+              <span class="trust-number" data-target="15" data-prefix="+">0</span>
+              <span class="trust-label">Anos de Experiência</span>
+            </div>
           </div>
           <div class="trust-item">
-            <span class="trust-number">+1.400</span>
-            <span class="trust-label">Processos Conduzidos</span>
+            <div class="trust-card-inner">
+              <span class="trust-number" data-target="1400" data-prefix="+" data-format="locale">0</span>
+              <span class="trust-label">Processos Conduzidos</span>
+            </div>
           </div>
           <div class="trust-item">
-            <span class="trust-number">98.4%</span>
-            <span class="trust-label">Taxa de Êxito</span>
+            <div class="trust-card-inner">
+              <span class="trust-number" data-target="98.4" data-suffix="%" data-decimals="1">0</span>
+              <span class="trust-label">Taxa de Êxito</span>
+            </div>
           </div>
           <div class="trust-item">
-            <span class="trust-number">100%</span>
-            <span class="trust-label">Conformidade LGPD</span>
+            <div class="trust-card-inner">
+              <span class="trust-number" data-target="100" data-suffix="%">0</span>
+              <span class="trust-label">Conformidade LGPD</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Card Flutuante de Destaque -->
+      <!-- Card Flutuante de Destaque com Animação Clássica de Atendimento Prioritário -->
       <div class="hero-visual">
-        <div class="premium-card">
-          <div class="card-glow"></div>
-          <div class="card-header-badge">Atendimento Prioritário</div>
+        <div class="premium-card animated-card">
+          <div class="card-shimmer"></div>
+          <div class="card-header-badge animated-badge">
+            <span class="pulse-ring"></span>
+            <span class="badge-text">Atendimento Prioritário</span>
+          </div>
           <h3>Precisa de auxílio jurídico imediato?</h3>
           <p>Nossa equipe de advogados especialistas analisa a viabilidade do seu caso com total sigilo e discrição.</p>
           <ul class="check-list">
@@ -163,10 +176,10 @@
             <li>✓ Relatórios transparentes em tempo real</li>
           </ul>
           <div class="lawyer-preview">
-            <div class="lawyer-avatar">VP</div>
+            <img src="assets/lawyer-helena.jpg" alt="Plantão de Especialistas" class="lawyer-avatar-img">
             <div>
               <strong>Plantão de Especialistas</strong>
-              <small>Equipe multidisciplinar OAB/SP</small>
+              <small>Equipe multidisciplinar • OAB/SP</small>
             </div>
           </div>
         </div>
@@ -340,10 +353,10 @@
       </div>
 
       <div class="partners-grid">
-        <!-- Sócio 1 -->
+        <!-- Sócio 1: Dr. Marcos Vanguard -->
         <div class="partner-card">
           <div class="partner-photo-box">
-            <div class="partner-initials">Dr. MV</div>
+            <img src="assets/lawyer-marcos.jpg" alt="Dr. Marcos Vanguard - Advogado Tributário e Empresarial" class="partner-photo">
           </div>
           <div class="partner-info">
             <h3>Dr. Marcos Vanguard</h3>
@@ -357,10 +370,10 @@
           </div>
         </div>
 
-        <!-- Sócia 2 -->
+        <!-- Sócia 2: Dra. Helena Prado -->
         <div class="partner-card">
           <div class="partner-photo-box">
-            <div class="partner-initials">Dra. HP</div>
+            <img src="assets/lawyer-helena.jpg" alt="Dra. Helena Prado - Advogada Trabalhista e Compliance" class="partner-photo">
           </div>
           <div class="partner-info">
             <h3>Dra. Helena Prado</h3>
@@ -536,10 +549,14 @@
     </div>
   </footer>
 
-  <!-- Botão Flutuante do WhatsApp -->
+  <!-- Botão Flutuante do WhatsApp com Foto da Dra. Helena -->
   <div class="floating-whatsapp">
     <div class="whatsapp-badge">
-      <span class="online-dot"></span> Dra. Helena online
+      <img src="assets/lawyer-helena.jpg" alt="Dra. Helena" class="whatsapp-thumb">
+      <div>
+        <span class="online-dot"></span>
+        <span class="whatsapp-badge-name">Dra. Helena online</span>
+      </div>
     </div>
     <a href="https://wa.me/5511998765432?text=Ol%C3%A1%2C+estou+no+site+e+gostaria+de+um+atendimento+jur%C3%ADdico." target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Falar no WhatsApp">
       <svg viewBox="0 0 24 24" width="32" height="32" fill="white">
