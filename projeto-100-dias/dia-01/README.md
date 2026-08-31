@@ -1,48 +1,33 @@
-# ⚖️ Dia 01: Landing Page para Escritório de Advocacia Premium
+# ⚖️ Dia 01 — Vanguard & Prado Advocacia Tributária Estratégica
 
-> **Projeto**: Vanguard & Prado Advogados Associados  
-> **Fase**: 01 — Landing Pages One-Page de Alta Conversão  
-> **Tecnologias**: HTML5 Semântico, CSS3 Moderno (Design Tokens + Glassmorphism), JavaScript Puro (Vanilla JS).
-
----
-
-## 💼 Ficha Comercial do Projeto (Para sua Agência)
-
-- **Público-Alvo**: Escritórios de advocacia de médio e alto padrão, advogados autônomos e consultorias jurídicas.
-- **Dores do Cliente**:
-  - Dificuldade de captar clientes empresariais na internet.
-  - Sites antigos que parecem lentos e não transmitem autoridade.
-  - Restrições éticas da OAB para anúncios diretos (precisam de uma abordagem institucional e consultiva).
-- **Proposta de Valor**:
-  - Design *Dark Luxury & Gold* que transmite sobriedade e prestígio.
-  - Ferramenta de **Diagnóstico Jurídico Rápido** que pré-qualifica o lead e envia os dados organizados no WhatsApp do advogado.
-  - Estrutura 100% adequada ao Provimento 205/2021 da OAB e LGPD.
-- **Preço Sugerido de Venda**: **R$ 2.000 a R$ 3.800** (ou R$ 1.500 + mensalidade de R$ 150/mês para hospedagem/manutenção).
+**Nicho:** Advocacia Tributária Empresarial, Recuperação de Créditos Fiscais e Holdings.  
+**Live Demo:** [https://studiosanjose.github.io/agencia-100-sites/projeto-100-dias/dia-01/](https://studiosanjose.github.io/agencia-100-sites/projeto-100-dias/dia-01/)
 
 ---
 
-## 🧠 Guia Didático de Aprendizado (O que você aprendeu na prática)
+## 💎 Design System & Referências de Luxo
 
-### 1. HTML5 Semântico & SEO
-- **Tags Semânticas**: Em vez de usar apenas `<div>`, usamos `<header>`, `<nav>`, `<section>`, `<main>` e `<footer>`. Isso melhora o ranqueamento no Google.
-- **Schema.org `LegalService`**: Adicionamos um bloco de dados estruturados JSON-LD no `<head>`. Isso informa aos motores de busca que o site pertence a um escritório de advocacia legítimo, com endereço, telefone e horário de funcionamento.
-
-### 2. CSS3 Moderno (Sem dependência de frameworks pesados)
-- **Variáveis CSS (`:root`)**: Centralizamos cores, fontes e espaçamentos no topo do arquivo. Se o cliente quiser mudar a cor de dourado para azul royal, basta alterar uma única variável.
-- **CSS Grid & Flexbox**:
-  - `display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));` — Faz os cards se adaptarem sozinhos em telas de celular, tablet e computador sem quebrar.
-- **Glassmorphism**: Criado combinando `background: rgba(18, 26, 41, 0.75)` com `backdrop-filter: blur(16px)` e bordas translúcidas sutis.
-
-### 3. JavaScript Interativo (Vanilla JS)
-- **Diagnóstico com WhatsApp Inteligente**:
-  - O script captura as escolhas do usuário no formulário e monta uma mensagem estruturada com emojis.
-  - Usa `encodeURIComponent()` para transformar o texto com quebras de linha e caracteres especiais em um link seguro para o WhatsApp Web / App.
-- **Acordeão do FAQ com `scrollHeight`**:
-  - O JavaScript calcula a altura exata do conteúdo (`element.scrollHeight`) para que a animação de abertura e fechamento seja 100% suave.
-- **Máscara de Telefone com Regex**:
-  - Formata o número automaticamente enquanto o usuário digita no padrão `(11) 99999-9999`.
+Inspirado nos maiores e mais premiados escritórios jurídicos do Brasil (*Elpídio Donizetti, IGF Advogados, VLV Advogados e Pedro Reis*):
+- **Tipografia Nobre:** `Cormorant Garamond` (Google Fonts: serif clássica com itálicos dourados finos) para títulos de alta autoridade + `Plus Jakarta Sans` para leitura técnica limpa.
+- **Paleta de Cores:** *Obsidian Dark* (`#0b0e12`), *Champagne & Antique Gold* (`#b89a60`, `#dfba73`) e textos em *Marfim/Creme* (`#f0ebe2`).
+- **Retratos Imponentes dos Titulares:** Dr. Marcos Vanguard e Dra. Helena Prado destacados como a alma do escritório, com credenciais acadêmicas (USP, PUC-SP, IBDT), badges da OAB e efeito editorial com iluminação suave no hover.
+- **Prova Social de Alto Ticket:** Selo flutuante de **5.0 Estrelas no Google Reviews** e métricas de autoridade (+R$ 120M recuperados, +18 anos, 98.6% de êxito).
 
 ---
 
-## 🚀 Como testar localmente
-Basta abrir o arquivo `index.html` em qualquer navegador web ou utilizar a extensão Live Server.
+## 🛠️ Tecnologias & Engenharia
+
+- **HTML5 Semântico:** Marcação estruturada completa com **Schema.org JSON-LD** (`LegalService` & `Attorney`) para ranqueamento no Google.
+- **CSS3 Moderno:** Design tokens puros, Glassmorphism, radial gradients e responsividade total sem frameworks pesados.
+- **JavaScript Vanilla:**
+  - Animação progressiva de contagem (`count-up`) usando `IntersectionObserver`.
+  - Simulador interativo de **Diagnóstico Tributário** com envio direto de briefing completo para o WhatsApp dos sócios.
+  - Acordeão dinâmico com respostas para as maiores dúvidas tributárias.
+  - Máscara inteligente de telefone com DDD.
+
+---
+
+## 💼 Como Vender esse Projeto para Escritórios de Advocacia
+
+- **Ticket Médio Sugerido:** **R$ 2.500 a R$ 4.500** + mensalidade de manutenção/hospedagem (R$ 150 a R$ 350/mês).
+- **Argumento de Venda:** *"Escritórios tributários lidam com causas milionárias. Um site genérico afasta grandes CFOs e diretores. Este layout passa autoridade imediata de banca tradicional com a agilidade digital do WhatsApp direto com os sócios."*

@@ -1,12 +1,12 @@
 /**
- * Vanguard & Prado Advogados Associados
- * Lógica Interativa: Menu Mobile, Acordeão FAQ, Diagnóstico, Contador Dinâmico e WhatsApp
+ * VANGUARD & PRADO ADVOCACIA TRIBUTÁRIA
+ * Scripts de Interatividade, Animações e Construtor de WhatsApp Fiscal
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
-     1. MENU MOBILE
+     1. MENU MOBILE & NAVEGAÇÃO SUAVE
      ========================================================================== */
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Fechar o menu ao clicar em qualquer link de navegação
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Fechar ao clicar em links
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
         mobileToggle.setAttribute('aria-expanded', 'false');
@@ -27,184 +27,159 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. ANIMAÇÃO CLÁSSICA DE CONTAGEM PROGRESSIVA (COUNT-UP STATS)
+     2. ANIMAÇÃO DE CONTAGEM PROGRESSIVA DOS NÚMEROS (COUNT-UP)
      ========================================================================== */
   const statsGrid = document.getElementById('statsGrid');
-  const counterElements = document.querySelectorAll('.trust-number[data-target]');
-  let hasAnimatedStats = false;
+  let animatedStats = false;
 
-  function animateCounters() {
-    counterElements.forEach(el => {
+  function animateNumbers() {
+    const numbers = document.querySelectorAll('.trust-number');
+    
+    numbers.forEach(el => {
       const target = parseFloat(el.getAttribute('data-target'));
       const prefix = el.getAttribute('data-prefix') || '';
       const suffix = el.getAttribute('data-suffix') || '';
-      const isLocale = el.getAttribute('data-format') === 'locale';
       const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const isLocale = el.getAttribute('data-format') === 'locale';
       
       const duration = 2000; // 2 segundos
       const startTime = performance.now();
 
-      function updateCounter(currentTime) {
-        const elapsedTime = currentTime - startTime;
-        const progress = Math.min(elapsedTime / duration, 1);
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing suave (easeOutExpo)
+        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const currentVal = target * ease;
 
-        // Efeito de aceleração/desaceleração clássica (easeOutExpo)
-        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        const currentValue = (target * easeProgress);
-
-        let formattedValue = '';
-        if (decimals > 0) {
-          formattedValue = currentValue.toFixed(decimals).replace('.', ',');
-        } else if (isLocale) {
-          formattedValue = Math.floor(currentValue).toLocaleString('pt-BR');
-        } else {
-          formattedValue = Math.floor(currentValue).toString();
+        let formatted = decimals > 0 ? currentVal.toFixed(decimals) : Math.floor(currentVal);
+        if (isLocale) {
+          formatted = Math.floor(currentVal).toLocaleString('pt-BR');
         }
 
-        el.textContent = `${prefix}${formattedValue}${suffix}`;
+        el.textContent = `${prefix}${formatted}${suffix}`;
 
         if (progress < 1) {
-          requestAnimationFrame(updateCounter);
+          requestAnimationFrame(update);
         } else {
-          // Garante valor final exato
-          if (decimals > 0) {
-            el.textContent = `${prefix}${target.toFixed(decimals).replace('.', ',')}${suffix}`;
-          } else if (isLocale) {
-            el.textContent = `${prefix}${target.toLocaleString('pt-BR')}${suffix}`;
-          } else {
-            el.textContent = `${prefix}${target}${suffix}`;
+          // Garantir valor final exato
+          let finalFormatted = decimals > 0 ? target.toFixed(decimals) : target;
+          if (isLocale) {
+            finalFormatted = target.toLocaleString('pt-BR');
           }
+          el.textContent = `${prefix}${finalFormatted}${suffix}`;
         }
       }
 
-      requestAnimationFrame(updateCounter);
+      requestAnimationFrame(update);
     });
   }
 
-  // Aciona a contagem assim que o bloco entra no campo visual
   if (statsGrid && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !hasAnimatedStats) {
-          hasAnimatedStats = true;
-          animateCounters();
-          observer.unobserve(entry.target);
+        if (entry.isIntersecting && !animatedStats) {
+          animatedStats = true;
+          animateNumbers();
+          observer.unobserve(statsGrid);
         }
       });
     }, { threshold: 0.25 });
 
     observer.observe(statsGrid);
   } else {
-    // Fallback se não suportar observer
-    animateCounters();
+    animateNumbers();
   }
 
   /* ==========================================================================
-     3. FAQ ACORDEÃO (ACESSIBILIDADE & ANIMAÇÃO SUAVE)
+     3. FAQ ACORDEÃO
      ========================================================================== */
-  const accordionItems = document.querySelectorAll('.accordion-item');
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-  accordionItems.forEach(item => {
-    const header = item.querySelector('.accordion-header');
-    const body = item.querySelector('.accordion-body');
-
+  accordionHeaders.forEach(header => {
     header.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
+      const item = header.parentElement;
+      const body = header.nextElementSibling;
+      const isOpen = item.classList.contains('active');
 
-      // Fecha todos os outros acordeões
-      accordionItems.forEach(otherItem => {
-        otherItem.classList.remove('active');
-        const otherHeader = otherItem.querySelector('.accordion-header');
-        const otherBody = otherItem.querySelector('.accordion-body');
-        if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
-        if (otherBody) otherBody.style.maxHeight = null;
+      // Fecha outros itens
+      document.querySelectorAll('.accordion-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+          otherItem.querySelector('.accordion-body').style.maxHeight = null;
+        }
       });
 
-      // Se o clicado não estava ativo, abre
-      if (!isActive) {
+      // Alterna o item clicado
+      if (!isOpen) {
         item.classList.add('active');
         header.setAttribute('aria-expanded', 'true');
-        body.style.maxHeight = body.scrollHeight + 'px';
+        body.style.maxHeight = body.scrollHeight + 30 + 'px';
+      } else {
+        item.classList.remove('active');
+        header.setAttribute('aria-expanded', 'false');
+        body.style.maxHeight = null;
       }
     });
   });
 
   /* ==========================================================================
-     4. MÁSCARA INTELIGENTE DE TELEFONE / WHATSAPP
+     4. MÁSCARA INTELIGENTE DE TELEFONE (DDD + 9 DÍGITOS)
      ========================================================================== */
   const phoneInput = document.getElementById('clientPhone');
-
   if (phoneInput) {
     phoneInput.addEventListener('input', (e) => {
-      let value = e.target.value.replace(/\D/g, ''); // remove tudo que não for dígito
-      if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
 
-      if (value.length > 10) {
-        // Formato Celular: (XX) 9XXXX-XXXX
-        value = value.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-      } else if (value.length > 5) {
-        // Formato Fixo / Parcial: (XX) XXXX-XXXX
-        value = value.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      if (value.length > 6) {
+        value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
       } else if (value.length > 2) {
-        value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+        value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+      } else if (value.length > 0) {
+        value = `(${value}`;
       }
+
       e.target.value = value;
     });
   }
 
   /* ==========================================================================
-     5. FORMULÁRIO DE DIAGNÓSTICO JURÍDICO & REDIRECIONAMENTO WHATSAPP
+     5. SIMULADOR & DIAGNÓSTICO TRIBUTÁRIO -> WHATSAPP
      ========================================================================== */
-  const diagnosisForm = document.getElementById('diagnosisForm');
+  const taxForm = document.getElementById('taxDiagnosisForm');
 
-  if (diagnosisForm) {
-    diagnosisForm.addEventListener('submit', (e) => {
+  if (taxForm) {
+    taxForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const perfil = diagnosisForm.querySelector('input[name="perfil"]:checked')?.value || 'Não informado';
-      const area = document.getElementById('areaSelect')?.value || 'Geral';
-      const urgencia = diagnosisForm.querySelector('input[name="urgencia"]:checked')?.value || 'Não informada';
-      const nome = document.getElementById('clientName')?.value.trim() || 'Cliente';
-      const telefone = document.getElementById('clientPhone')?.value.trim() || 'Não informado';
+      const regime = (taxForm.querySelector('input[name="regime"]:checked') || {}).value || 'Não informado';
+      const demanda = document.getElementById('demandSelect').value;
+      const faturamento = (taxForm.querySelector('input[name="faturamento"]:checked') || {}).value || 'Não informado';
+      const nome = document.getElementById('clientName').value.trim();
+      const telefone = document.getElementById('clientPhone').value.trim();
 
-      // Monta mensagem parametrizada e profissional para o WhatsApp
-      const mensagem = `Olá, Dr(a). Gostaria de atendimento para um caso jurídico preliminar:\n\n` +
-        `👤 *Nome:* ${nome}\n` +
-        `🏢 *Perfil:* ${perfil}\n` +
-        `⚖️ *Área Jurídica:* ${area}\n` +
-        `⏱ *Urgência:* ${urgencia}\n` +
-        `📱 *Contato:* ${telefone}\n\n` +
-        `Aguardo retorno de um advogado especialista.`;
+      if (!nome || !telefone) {
+        alert('Por favor, preencha seu nome e telefone para enviarmos a análise.');
+        return;
+      }
+
+      // Monta a mensagem executiva formatada
+      const mensagem = `Olá Dr. Marcos e Dra. Helena! Fiz o Diagnóstico Tributário no site da Vanguard & Prado:%0A%0A` +
+        `👤 *Responsável:* ${encodeURIComponent(nome)}%0A` +
+        `📱 *Contato:* ${encodeURIComponent(telefone)}%0A` +
+        `🏢 *Regime Tributário:* ${encodeURIComponent(regime)}%0A` +
+        `💰 *Faturamento Mensal:* ${encodeURIComponent(faturamento)}%0A` +
+        `⚖️ *Demanda Principal:* ${encodeURIComponent(demanda)}%0A%0A` +
+        `Gostaria de uma análise preliminar de viabilidade com os advogados titulares.`;
 
       const whatsappNumber = '5511998765432';
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
+      const url = `https://wa.me/${whatsappNumber}?text=${mensagem}`;
 
-      // Abre o WhatsApp com a mensagem pronta
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      window.open(url, '_blank');
     });
   }
-
-  /* ==========================================================================
-     6. SCROLL SUAVE PARA LINKS INTERNOS
-     ========================================================================== */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
 
 });
