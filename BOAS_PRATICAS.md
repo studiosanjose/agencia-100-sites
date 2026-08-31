@@ -1,10 +1,55 @@
 # 📘 Manual de Boas Práticas & Padrões de Engenharia da Agência
 
-Este guia estabelece os **padrões de excelência técnica, visual, conversão (CRO) e SEO** para todos os projetos desenvolvidos na agência e no desafio dos **100 Sites em 100 Dias**.
+Este guia estabelece os **padrões de excelência técnica, visual, conversão (CRO), SEO e o fluxo operacional de benchmarking** para todos os projetos desenvolvidos na agência e no desafio dos **100 Sites em 100 Dias**.
 
 ---
 
-## 🏛️ 1. Pilares de Design & Estética Visual
+## 🔄 1. O Fluxo de Trabalho Oficial (Benchmark -> Código -> Deploy)
+
+Construir "do nada" gera layouts genéricos. O padrão oficial da agência segue sempre a cadeia de inteligência visual:
+
+```mermaid
+flowchart LR
+    A[1. Definição do Nicho] --> B[2. Mineração de 2 a 4 Referências]
+    B --> C[3. Extração do Design System]
+    C --> D[4. Geração de Fotos IA & Código]
+    D --> E[5. Ajustes & Deploy GitHub]
+```
+
+1. **Definição do Nicho do Dia**: Escolha do segmento de alto ticket.
+2. **Mineração de Referências**: O usuário e a IA selecionam 2 a 4 sites reais com design de ponta.
+3. **Extração de Design System**: A IA analisa as referências e extrai tipografia, paleta clara/escura, micro-interações e hierarquia de conversão.
+4. **Construção & Ativos de IA**: Geração de fotos ultra-realistas dos especialistas e codificação em HTML5, CSS e JS puro.
+5. **Validação & Deploy Contínuo**: Ajuste visual imediato no navegador e publicação no GitHub Pages.
+
+---
+
+## 🧭 2. Onde e Como Encontrar Referências de Elite (Mineração em 2 Minutos)
+
+### A. Busca no Google Ads em Polos Nobres
+Quem paga anúncios no Google Ads em polos de alto poder aquisitivo geralmente contratou agências de ponta (R$ 5k a R$ 25k).
+- **Fórmula de Busca**: `[Nicho] + [Polo Nobre]`
+  - *Exemplos*:
+    - `"harmonizacao facial jardins sp"`
+    - `"clinica dermatologia itaim bibi"`
+    - `"imobiliaria alto padrao alphaville"`
+    - `"energia solar empresarial curitiba"`
+    - `"advocacia empresarial faria lima"`
+
+### B. Biblioteca de Anúncios do Meta (Instagram / Facebook)
+Permite visualizar landing pages reais e ativas que estão recebendo tráfego pago neste exato momento.
+- **Link**: [facebook.com/ads/library](https://www.facebook.com/ads/library)
+- **Como usar**: Selecione Brasil -> Todos os Anúncios -> Digite o Nicho -> Clique nos botões "Saiba Mais" para inspecionar as páginas de destino.
+
+### C. Diretórios Globais de Design & UI
+- **[Land-book.com](https://land-book.com/)**: Catálogo filtrado por nicho com as páginas mais bonitas do mundo.
+- **[OnePageLove.com](https://onepagelove.com/)**: Foco em sites de página única e alta conversão.
+- **[Awwwards.com](https://www.awwwards.com/)**: Sites premiados mundialmente por estética e interatividade.
+- **[Dribbble.com](https://dribbble.com/)**: Buscar `[Nicho] landing page ui` (ex: `Dental clinic landing page`).
+
+---
+
+## 🏛️ 3. Pilares de Design & Estética Visual
 
 1. **Tipografia de Alto Nível (Nunca usar fontes padrão)**:
    - **Títulos (Headings)**: Fontes com personalidade e autoridade.
@@ -18,7 +63,7 @@ Este guia estabelece os **padrões de excelência técnica, visual, conversão (
 
 ---
 
-## 🚀 2. Engenharia de Conversão (CRO) & WhatsApp
+## 🚀 4. Engenharia de Conversão (CRO) & WhatsApp
 
 1. **O Humano como Alma do Site**:
    - Sempre destacar os profissionais titulares/fundadores com fotos verticais de alta qualidade e credenciais visíveis.
@@ -31,7 +76,7 @@ Este guia estabelece os **padrões de excelência técnica, visual, conversão (
 
 ---
 
-## 🔍 3. SEO Técnico & Estruturação Semântica
+## 🔍 5. SEO Técnico & Estruturação Semântica
 
 1. **Marcação Semântica Única**:
    - Apenas **um único `<h1>` por página** contendo a palavra-chave principal e a proposta de valor.
@@ -50,7 +95,7 @@ Este guia estabelece os **padrões de excelência técnica, visual, conversão (
 
 ---
 
-## ⚡ 4. Performance & Core Web Vitals
+## ⚡ 6. Performance & Core Web Vitals
 
 1. **Meta de Velocidade**:
    - Google PageSpeed Insights **90+ no Mobile e Desktop**.
@@ -63,7 +108,7 @@ Este guia estabelece os **padrões de excelência técnica, visual, conversão (
 
 ---
 
-## 🛡️ 5. Conformidade Ética & Regulamentações por Nicho
+## 🛡️ 7. Conformidade Ética & Regulamentações por Nicho
 
 - **Advocacia (OAB)**: Respeitar o Provimento nº 205/2021 da OAB (caráter informativo, sem mercantilização agressiva ou promessa de causa ganha).
 - **Medicina / Odonto (CFM / CFO)**: Indicação clara de CRM/CRO e RQE (registro de qualificação de especialista), sem fotos apelativas ou promessas milagrosas.
@@ -71,7 +116,7 @@ Este guia estabelece os **padrões de excelência técnica, visual, conversão (
 
 ---
 
-## 🔄 6. Fluxo de Git & Deploy Profissional
+## 🔄 8. Fluxo de Git & Deploy Profissional
 
 1. **Padrão Conventional Commits**:
    - `feat(modulo):` para novas funcionalidades.
@@ -83,7 +128,7 @@ Este guia estabelece os **padrões de excelência técnica, visual, conversão (
 
 ---
 
-## ✅ 7. Checklist Pré-Entrega (10 Passos antes de publicar)
+## ✅ 9. Checklist Pré-Entrega (10 Passos antes de publicar)
 
 - [ ] 1. O site abre perfeitamente no celular (testar em iPhone e Android)?
 - [ ] 2. Nenhum elemento ficou sobreposto no menu ou no rodapé?
