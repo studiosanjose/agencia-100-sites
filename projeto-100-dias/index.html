@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100 Sites em 100 Dias | Portfólio da Agência Web</title>
+  <meta name="description" content="Desafio de 100 sites profissionais em 100 dias. Landing pages, portais institucionais, catálogos e lojas virtuais de alta performance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: rgba(20, 27, 45, 0.7);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #00f2fe;
+      --accent-blue: #4facfe;
+      --accent-gold: #e5a93b;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font);
+      min-height: 100vh;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(79, 172, 254, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(0, 242, 254, 0.08) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(79, 172, 254, 0.15);
+      border: 1px solid rgba(79, 172, 254, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+
+    .progress-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      padding: 24px;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .progress-bar-bg {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 1%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+      transition: width 0.8s ease;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+
+    .card.active {
+      border-color: rgba(79, 172, 254, 0.4);
+    }
+
+    .card.active::before {
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-cyan));
+    }
+
+    .card.active:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(79, 172, 254, 0.2);
+      border-color: rgba(0, 242, 254, 0.6);
+    }
+
+    .card.locked {
+      opacity: 0.6;
+      border-style: dashed;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .day-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.1);
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+
+    .status-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-upcoming {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .tech-pill {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: #cbd5e1;
+    }
+
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: #090d16;
+      box-shadow: 0 4px 14px rgba(0, 242, 254, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-view:hover {
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+      transform: scale(1.02);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-card);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">
+        <span class="badge-dot"></span> Desafio de Engenharia Web
+      </div>
+      <h1>100 Sites em 100 Dias</h1>
+      <p class="subtitle">
+        Uma biblioteca completa de landing pages, portais institucionais e lojas virtuais projetadas para alta conversão e performance.
+      </p>
+
+      <div class="progress-box">
+        <div class="progress-header">
+          <span>Meta: 100 Projetos</span>
+          <span style="color: var(--accent-cyan);">1% Completo (1/100)</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid-container">
+      
+      <!-- Dia 01: Advocacia Premium -->
+      <div class="card active">
+        <div>
+          <div class="card-top">
+            <span class="day-tag">DIA 01</span>
+            <span class="status-tag status-completed">✓ No Ar</span>
+          </div>
+          <h2 class="card-title">Escritório de Advocacia Premium</h2>
+          <p class="card-desc">
+            Landing page de alto padrão para advocacia corporativa, tributária e trabalhista com Diagnóstico Jurídico interativo e CTA direto para WhatsApp.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-pill">HTML5 Semântico</span>
+            <span class="tech-pill">CSS Glassmorphism</span>
+            <span class="tech-pill">JavaScript Puro</span>
+            <span class="tech-pill">Schema.org SEO</span>
+          </div>
+        </div>
+        <a href="./dia-01/index.html" class="btn-view">
+          Abrir Projeto Dia 01 →
+        </a>
+      </div>
+
+      <!-- Dia 02: Clínica de Estética -->
+      <div class="card locked">
+        <div>
+          <div class="card-top">
+            <span class="day-tag">DIA 02</span>
+            <span class="status-tag status-upcoming">Em Breve</span>
+          </div>
+          <h2 class="card-title">Clínica de Estética & Harmonização</h2>
+          <p class="card-desc">
+            Layout sofisticado com comparativo interativo antes/depois, catálogo de procedimentos VIP e captação de consultas.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-pill">Fase 1: Landing Page</span>
+            <span class="tech-pill">Agendamento VIP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dia 03: Energia Solar -->
+      <div class="card locked">
+        <div>
+          <div class="card-top">
+            <span class="day-tag">DIA 03</span>
+            <span class="status-tag status-upcoming">Em Breve</span>
+          </div>
+          <h2 class="card-title">Energia Solar & Engenharia</h2>
+          <p class="card-desc">
+            Simulador interativo de economia na conta de luz, apresentação de projetos e conversão de leads com alto tíquete.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-pill">Calculadora JS</span>
+            <span class="tech-pill">CRO Tíquete Alto</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dia 51: Garagem de Veículos (Preview Fase 3) -->
+      <div class="card locked">
+        <div>
+          <div class="card-top">
+            <span class="day-tag">DIA 51</span>
+            <span class="status-tag status-upcoming">Fase 3</span>
+          </div>
+          <h2 class="card-title">Concessionária & Garagem de Carros</h2>
+          <p class="card-desc">
+            Catálogo dinâmico de veículos com busca multifiltro (marca, ano, preço, câmbio) e simulação de parcelas.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-pill">Filtro Dinâmico</span>
+            <span class="tech-pill">Catálogo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dia 81: E-commerce (Preview Fase 4) -->
+      <div class="card locked">
+        <div>
+          <div class="card-top">
+            <span class="day-tag">DIA 81</span>
+            <span class="status-tag status-upcoming">Fase 4</span>
+          </div>
+          <h2 class="card-title">E-commerce de Moda & Acessórios</h2>
+          <p class="card-desc">
+            Loja virtual com carrinho lateral, cálculo dinâmico de frete, grade de variações e checkout simplificado.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-pill">WooCommerce / JS Cart</span>
+            <span class="tech-pill">Checkout Rápido</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <p>Desenvolvido com foco em alta performance, acessibilidade e conversão.</p>
+    </footer>
+  </div>
+
+</body>
+</html>

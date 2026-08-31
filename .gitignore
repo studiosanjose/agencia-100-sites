@@ -1,0 +1,21 @@
+# Dependências
+node_modules/
+vendor/
+
+# Ambientes e Segredos
+.env
+.env.local
+.env.*.local
+*.log
+
+# Arquivos de Sistema e IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.gemini/
+
+# Builds e Temporários
+dist/
+build/
+.cache/
