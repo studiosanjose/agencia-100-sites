@@ -1,35 +1,37 @@
 /* ==========================================================================
-   DESIGN SYSTEM: ADVOCACIA TRIBUTÁRIA DE ALTO LUXO
-   Inspirado em Elpídio Donizetti, IGF Advogados e VLV Advogados
+   DESIGN SYSTEM: ADVOCACIA TRIBUTÁRIA DE ALTO LUXO (PALETA CLARA & CLÁSSICA)
+   Inspirado no estilo editorial clássico de Elpídio Donizetti & Bancas Tradicionais
    ========================================================================== */
 
 :root {
-  /* Paleta Obsidian Dark & Antique Gold */
-  --bg-dark: #0b0e12;
-  --bg-surface: #11161d;
-  --bg-card: rgba(18, 24, 33, 0.85);
-  --bg-card-hover: rgba(24, 34, 48, 0.98);
+  /* Paleta Warm Alabaster, Linen & Pure White */
+  --bg-body: #f9f7f2;
+  --bg-surface: #f1ede3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ffffff;
+  --bg-card-subtle: #faf8f5;
   
-  /* Acentos em Ouro Nobre & Champagne */
-  --gold: #b89a60;
-  --gold-lt: #dfba73;
-  --gold-dark: #8c7340;
-  --gold-gradient: linear-gradient(135deg, #f5dfa8 0%, #b89a60 50%, #8c7340 100%);
-  --gold-glow: 0 0 25px rgba(184, 154, 96, 0.35);
+  /* Ouro Nobre Brunido (Alto contraste e legibilidade em fundos claros) */
+  --gold: #9e7b3b;
+  --gold-lt: #b8934f;
+  --gold-dark: #785d26;
+  --gold-gradient: linear-gradient(135deg, #b8934f 0%, #9e7b3b 50%, #785d26 100%);
+  --gold-glow: 0 0 25px rgba(158, 123, 59, 0.2);
   
-  /* Textos & Marfim de Luxo */
-  --ivory: #f0ebe2;
-  --text-primary: #f8fafc;
-  --text-secondary: #9aa8b8;
-  --text-muted: #64748b;
+  /* Textos & Tipografia Soberana */
+  --text-heading: #11161f;
+  --text-body: #475467;
+  --text-muted: #667085;
+  --text-light: #ffffff;
   
-  /* Bordas e Efeitos Glassmorphism */
-  --border-light: rgba(255, 255, 255, 0.07);
-  --border-gold: rgba(184, 154, 96, 0.28);
-  --border-gold-strong: rgba(184, 154, 96, 0.7);
+  /* Bordas e Sombras de Alto Luxo */
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-gold: rgba(158, 123, 59, 0.26);
+  --border-gold-strong: rgba(158, 123, 59, 0.6);
   --glass-blur: blur(16px);
-  --shadow-deep: 0 16px 40px -12px rgba(0, 0, 0, 0.8);
-  --shadow-gold: 0 12px 32px rgba(184, 154, 96, 0.25);
+  --shadow-luxury: 0 16px 40px -12px rgba(28, 38, 56, 0.08), 0 2px 10px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 24px 50px -10px rgba(28, 38, 56, 0.14), 0 0 20px rgba(158, 123, 59, 0.12);
+  --shadow-gold: 0 10px 25px rgba(158, 123, 59, 0.28);
   
   /* Tipografia Clássica de Alto Padrão */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -57,14 +59,14 @@ html {
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
+  background-color: var(--bg-body);
+  color: var(--text-body);
   font-family: var(--font-sans);
   line-height: 1.65;
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(184, 154, 96, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(184, 154, 96, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 10% 10%, rgba(158, 123, 59, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(158, 123, 59, 0.03) 0%, transparent 45%);
   background-attachment: fixed;
 }
 
@@ -87,15 +89,15 @@ body {
    ========================================================================== */
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  letter-spacing: 0.01em;
-  color: var(--ivory);
-  line-height: 1.15;
-  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-heading);
+  line-height: 1.18;
+  font-weight: 600;
 }
 
 h1 em, h2 em, h3 em {
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .gradient-text {
@@ -124,12 +126,13 @@ h1 em, h2 em, h3 em {
 .section-title {
   font-size: clamp(2.2rem, 3.8vw, 3.2rem);
   margin-bottom: 12px;
+  color: var(--text-heading);
 }
 
 .section-desc {
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 1.05rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .gold-line {
@@ -143,11 +146,12 @@ h1 em, h2 em, h3 em {
    TOP BAR (PLANTÃO TRIBUTÁRIO)
    ========================================================================== */
 .top-bar {
-  background: rgba(6, 8, 12, 0.98);
-  border-bottom: 1px solid var(--border-light);
+  background: #ede8dc;
+  border-bottom: 1px solid var(--border-gold);
   font-size: 0.82rem;
-  color: var(--text-secondary);
-  padding: 8px 0;
+  color: #55442e;
+  padding: 9px 0;
+  font-weight: 500;
 }
 
 .top-bar-inner {
@@ -163,7 +167,7 @@ h1 em, h2 em, h3 em {
 }
 
 .divider {
-  color: var(--border-light);
+  color: rgba(158, 123, 59, 0.4);
 }
 
 .top-bar-emergency {
@@ -173,31 +177,32 @@ h1 em, h2 em, h3 em {
 }
 
 .top-bar-emergency a {
-  color: var(--gold-lt);
+  color: var(--gold-dark);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .live-indicator {
   width: 8px;
   height: 8px;
-  background-color: #10b981;
+  background-color: #059669;
   border-radius: 50%;
-  box-shadow: 0 0 8px #10b981;
+  box-shadow: 0 0 8px #059669;
 }
 
 /* ==========================================================================
-   SITE HEADER & NAVBAR (LAYOUT LIMPO & SEM SOBREPOSIÇÃO)
+   SITE HEADER & NAVBAR (CLARA, CRISTALINA & SEM SOBREPOSIÇÃO)
    ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 14, 18, 0.94);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid rgba(158, 123, 59, 0.2);
   padding: 18px 0;
   transition: var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .nav-wrapper {
@@ -212,32 +217,31 @@ h1 em, h2 em, h3 em {
   align-items: center;
   gap: 14px;
   text-decoration: none;
-  color: var(--ivory);
   flex-shrink: 0;
 }
 
 .logo-icon {
   width: 36px;
   height: 36px;
-  stroke: var(--gold);
+  stroke: var(--gold-dark);
 }
 
 .brand-name {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
   display: block;
-  color: var(--ivory);
+  color: var(--text-heading);
 }
 
 .brand-sub {
   font-family: var(--font-sans);
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   letter-spacing: 2px;
-  color: var(--gold);
+  color: var(--gold-dark);
   display: block;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nav-menu {
@@ -250,16 +254,16 @@ h1 em, h2 em, h3 em {
 
 .nav-link {
   text-decoration: none;
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: var(--transition-smooth);
   white-space: nowrap;
 }
 
 .nav-link:hover,
 .nav-link.highlight {
-  color: var(--gold-lt);
+  color: var(--gold-dark);
 }
 
 .nav-actions {
@@ -287,13 +291,13 @@ h1 em, h2 em, h3 em {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--ivory);
+  background: var(--text-heading);
   margin: 5px 0;
   transition: var(--transition-smooth);
 }
 
 /* ==========================================================================
-   BOTÕES DE ALTO PADRÃO
+   BOTÕES DE ALTO LUXO CLÁSSICO
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -325,7 +329,7 @@ h1 em, h2 em, h3 em {
 
 .btn-gold {
   background: var(--gold-gradient);
-  color: #0b0e12;
+  color: #ffffff;
   box-shadow: var(--shadow-gold);
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -333,26 +337,28 @@ h1 em, h2 em, h3 em {
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(184, 154, 96, 0.4);
+  box-shadow: 0 14px 30px rgba(158, 123, 59, 0.38);
+  background: linear-gradient(135deg, #c59f5b 0%, #aa8644 50%, #85682c 100%);
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-gold);
-  color: var(--gold-lt);
+  background: #ffffff;
+  border: 1px solid var(--gold);
+  color: var(--gold-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .btn-ghost:hover {
-  background: rgba(184, 154, 96, 0.12);
-  color: #ffffff;
-  border-color: var(--gold);
+  background: rgba(158, 123, 59, 0.08);
+  color: var(--text-heading);
+  border-color: var(--gold-dark);
 }
 
 /* ==========================================================================
-   HERO SECTION EDITORIAL
+   HERO SECTION (CLARA, IMPOSTA & LUMINOSA)
    ========================================================================== */
 .hero-section {
-  padding: 90px 0 110px;
+  padding: 80px 0 100px;
   position: relative;
   background-image: url('assets/hero-bg.jpg');
   background-size: cover;
@@ -366,7 +372,7 @@ h1 em, h2 em, h3 em {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(100deg, rgba(11, 14, 18, 0.98) 45%, rgba(11, 14, 18, 0.85) 100%);
+  background: linear-gradient(105deg, rgba(249, 247, 242, 0.98) 45%, rgba(249, 247, 242, 0.88) 100%);
   z-index: 1;
 }
 
@@ -383,7 +389,7 @@ h1 em, h2 em, h3 em {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .hero-eyebrow-line {
@@ -396,22 +402,23 @@ h1 em, h2 em, h3 em {
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 2px;
-  color: var(--gold);
+  color: var(--gold-dark);
   text-transform: uppercase;
 }
 
 .hero-title {
   font-size: clamp(2.6rem, 4.4vw, 4.2rem);
-  margin-bottom: 22px;
-  font-weight: 500;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--text-heading);
 }
 
 .hero-subtitle {
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 1.15rem;
-  margin-bottom: 34px;
+  margin-bottom: 32px;
   max-width: 580px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
 }
 
@@ -419,24 +426,24 @@ h1 em, h2 em, h3 em {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
-/* Google Rating Badge Flutuante (Inspirado no VLV) */
+/* Google Rating Badge Flutuante */
 .google-rating-badge {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: rgba(18, 24, 33, 0.8);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-full);
   padding: 8px 18px;
-  margin-bottom: 36px;
-  backdrop-filter: var(--glass-blur);
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-luxury);
 }
 
 .google-rating-stars {
-  color: #ffb800;
+  color: #f59e0b;
   font-size: 1.1rem;
   letter-spacing: 2px;
 }
@@ -444,78 +451,73 @@ h1 em, h2 em, h3 em {
 .google-rating-text strong {
   display: block;
   font-size: 0.85rem;
-  color: var(--ivory);
+  color: var(--text-heading);
 }
 
 .google-rating-text span {
   font-size: 0.74rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
-/* Trust Stats (Métricas Tributárias de Autoridade) */
+/* Trust Stats (Métricas Tributárias Claras) */
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  border-top: 1px solid var(--border-light);
-  padding-top: 30px;
+  border-top: 1px solid var(--border-gold);
+  padding-top: 28px;
 }
 
 .trust-card-inner {
-  background: rgba(18, 24, 33, 0.6);
-  border: 1px solid rgba(184, 154, 96, 0.22);
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-sm);
   padding: 14px 10px;
   text-align: center;
   transition: var(--transition-smooth);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .trust-card-inner:hover {
   transform: translateY(-3px);
   border-color: var(--gold);
-  background: rgba(24, 34, 48, 0.9);
-  box-shadow: 0 10px 25px -5px rgba(184, 154, 96, 0.2);
+  box-shadow: var(--shadow-hover);
 }
 
 .trust-number {
   display: block;
   font-family: var(--font-serif);
   font-size: 1.9rem;
-  font-weight: 600;
-  color: var(--gold-lt);
+  font-weight: 700;
+  color: var(--gold-dark);
   line-height: 1.1;
   margin-bottom: 4px;
 }
 
 .trust-label {
   font-size: 0.74rem;
-  color: var(--text-secondary);
+  color: var(--text-body);
   line-height: 1.3;
+  font-weight: 500;
 }
 
 /* ==========================================================================
-   HERO CARD: SÓCIOS TRIBUTARISTAS
+   HERO CARD: SÓCIOS TRIBUTARISTAS (CLARO & NOBRE)
    ========================================================================== */
 .premium-lawyer-card {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: 32px;
   position: relative;
-  box-shadow: var(--shadow-deep), 0 0 30px rgba(184, 154, 96, 0.12);
+  box-shadow: var(--shadow-hover);
   overflow: hidden;
   animation: cardFloat 6s ease-in-out infinite;
 }
 
 @keyframes cardFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .card-shimmer {
@@ -527,7 +529,7 @@ h1 em, h2 em, h3 em {
   background: linear-gradient(
     45deg,
     transparent 45%,
-    rgba(255, 255, 255, 0.04) 50%,
+    rgba(158, 123, 59, 0.05) 50%,
     transparent 55%
   );
   animation: shimmerSweep 8s infinite linear;
@@ -543,9 +545,9 @@ h1 em, h2 em, h3 em {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(184, 154, 96, 0.15);
-  border: 1px solid rgba(184, 154, 96, 0.4);
-  color: var(--gold-lt);
+  background: rgba(158, 123, 59, 0.1);
+  border: 1px solid rgba(158, 123, 59, 0.4);
+  color: var(--gold-dark);
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -559,33 +561,34 @@ h1 em, h2 em, h3 em {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--gold-lt);
-  box-shadow: 0 0 8px var(--gold-lt);
+  background-color: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
   animation: radarPulse 2s infinite ease-out;
 }
 
 @keyframes radarPulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(184, 154, 96, 0.7);
+    box-shadow: 0 0 0 0 rgba(158, 123, 59, 0.6);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 8px rgba(184, 154, 96, 0);
+    box-shadow: 0 0 0 8px rgba(158, 123, 59, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(184, 154, 96, 0);
+    box-shadow: 0 0 0 0 rgba(158, 123, 59, 0);
   }
 }
 
 .hero-card-title {
   font-size: 1.35rem;
   margin-bottom: 8px;
+  color: var(--text-heading);
 }
 
 .hero-card-desc {
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 0.88rem;
   margin-bottom: 20px;
   line-height: 1.5;
@@ -599,8 +602,8 @@ h1 em, h2 em, h3 em {
 }
 
 .hero-lawyer-item {
-  background: rgba(11, 14, 18, 0.85);
-  border: 1px solid rgba(184, 154, 96, 0.25);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-md);
   padding: 12px 14px;
   text-decoration: none;
@@ -612,8 +615,9 @@ h1 em, h2 em, h3 em {
 
 .hero-lawyer-item:hover {
   transform: translateX(4px);
-  border-color: var(--gold);
-  background: rgba(20, 28, 40, 0.95);
+  border-color: var(--gold-dark);
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(158, 123, 59, 0.15);
 }
 
 .hero-lawyer-img-box {
@@ -638,9 +642,9 @@ h1 em, h2 em, h3 em {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bg-dark);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
-  color: var(--gold-lt);
+  color: var(--gold-dark);
   font-size: 0.58rem;
   font-weight: 700;
   padding: 1px 5px;
@@ -651,16 +655,16 @@ h1 em, h2 em, h3 em {
 .hero-lawyer-info strong {
   display: block;
   font-size: 0.95rem;
-  color: var(--ivory);
+  color: var(--text-heading);
 }
 
 .hero-lawyer-info span {
   font-size: 0.78rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .hero-card-guarantee {
-  background: rgba(255, 255, 255, 0.02);
+  background: #fbf9f5;
   border: 1px dashed var(--border-gold);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -672,16 +676,15 @@ h1 em, h2 em, h3 em {
 
 .hero-card-guarantee small {
   font-size: 0.76rem;
-  color: #cbd5e1;
+  color: var(--text-body);
   line-height: 1.4;
 }
 
 /* ==========================================================================
    SEÇÃO EDITORIAL DOS SÓCIOS TRIBUTARISTAS (#socios)
-   Inspirado no estilo de grande autoridade do Elpídio Donizetti
    ========================================================================== */
 .section-lawyers {
-  background: radial-gradient(circle at 50% 20%, rgba(184, 154, 96, 0.06) 0%, transparent 60%), var(--bg-dark);
+  background-color: var(--bg-surface);
 }
 
 .lawyers-showcase {
@@ -691,7 +694,7 @@ h1 em, h2 em, h3 em {
 }
 
 .lawyer-master-card {
-  background: var(--bg-card);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: 44px;
@@ -699,8 +702,7 @@ h1 em, h2 em, h3 em {
   grid-template-columns: 360px 1fr;
   gap: 48px;
   align-items: center;
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--shadow-deep);
+  box-shadow: var(--shadow-luxury);
   transition: var(--transition-smooth);
 }
 
@@ -717,8 +719,8 @@ h1 em, h2 em, h3 em {
 }
 
 .lawyer-master-card:hover {
-  border-color: var(--gold-lt);
-  box-shadow: var(--shadow-deep), 0 0 35px rgba(184, 154, 96, 0.2);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-hover);
   transform: translateY(-4px);
 }
 
@@ -729,7 +731,7 @@ h1 em, h2 em, h3 em {
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 2px solid var(--border-gold);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(184, 154, 96, 0.15);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 0 20px rgba(158, 123, 59, 0.1);
 }
 
 .lawyer-main-photo {
@@ -737,13 +739,13 @@ h1 em, h2 em, h3 em {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  filter: brightness(0.92) contrast(1.02);
+  filter: brightness(0.96) contrast(1.02);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
 }
 
 .lawyer-master-card:hover .lawyer-main-photo {
   transform: scale(1.04);
-  filter: brightness(1) contrast(1.05);
+  filter: brightness(1.02) contrast(1.04);
 }
 
 .portrait-badge {
@@ -751,7 +753,7 @@ h1 em, h2 em, h3 em {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(11, 14, 18, 0.96) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(17, 22, 31, 0.94) 50%, transparent 100%);
   padding: 36px 20px 18px;
   text-align: center;
 }
@@ -759,14 +761,14 @@ h1 em, h2 em, h3 em {
 .badge-title {
   display: block;
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--ivory);
+  color: #ffffff;
 }
 
 .badge-sub {
   font-size: 0.76rem;
-  color: var(--gold);
+  color: var(--gold-lt);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   font-weight: 600;
@@ -774,9 +776,9 @@ h1 em, h2 em, h3 em {
 
 .lawyer-experience-tag {
   display: inline-block;
-  background: rgba(184, 154, 96, 0.12);
+  background: rgba(158, 123, 59, 0.1);
   border: 1px solid var(--border-gold);
-  color: var(--gold-lt);
+  color: var(--gold-dark);
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -789,12 +791,13 @@ h1 em, h2 em, h3 em {
 .lawyer-name {
   font-size: clamp(2rem, 2.8vw, 2.6rem);
   margin-bottom: 6px;
+  color: var(--text-heading);
 }
 
 .lawyer-specialty-lead {
   font-size: 1.05rem;
-  color: var(--gold-lt);
-  font-weight: 400;
+  color: var(--gold-dark);
+  font-weight: 600;
   margin-bottom: 20px;
   line-height: 1.5;
 }
@@ -804,8 +807,8 @@ h1 em, h2 em, h3 em {
   padding-left: 18px;
   margin-bottom: 24px;
   font-style: italic;
-  color: #cbd5e1;
-  font-size: 0.98rem;
+  color: #334155;
+  font-size: 1rem;
   line-height: 1.65;
   font-family: var(--font-serif);
 }
@@ -815,8 +818,8 @@ h1 em, h2 em, h3 em {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 22px;
-  background: rgba(11, 14, 18, 0.6);
-  border: 1px solid var(--border-light);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-sm);
   padding: 16px;
 }
@@ -824,13 +827,13 @@ h1 em, h2 em, h3 em {
 .credential-item strong {
   display: block;
   font-size: 0.85rem;
-  color: var(--ivory);
+  color: var(--text-heading);
   margin-bottom: 4px;
 }
 
 .credential-item span {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--text-body);
   line-height: 1.4;
 }
 
@@ -843,12 +846,12 @@ h1 em, h2 em, h3 em {
 
 .badge-pill {
   font-size: 0.72rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  color: var(--gold-lt);
-  font-weight: 500;
+  color: var(--gold-dark);
+  font-weight: 600;
 }
 
 .lawyer-action-row {
@@ -864,7 +867,7 @@ h1 em, h2 em, h3 em {
 }
 
 /* ==========================================================================
-   SOLUÇÕES TRIBUTÁRIAS (GRID NUMERADO DE ALTO LUXO)
+   SOLUÇÕES TRIBUTÁRIAS (GRID NUMERADO CLARO)
    ========================================================================== */
 .solutions-grid {
   display: grid;
@@ -873,11 +876,11 @@ h1 em, h2 em, h3 em {
 }
 
 .solution-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-md);
   padding: 38px 30px;
-  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-luxury);
   transition: var(--transition-smooth);
   display: flex;
   flex-direction: column;
@@ -892,7 +895,7 @@ h1 em, h2 em, h3 em {
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 3px;
   background: var(--gold);
   transform: scaleX(0);
   transform-origin: left;
@@ -901,9 +904,8 @@ h1 em, h2 em, h3 em {
 
 .solution-card:hover {
   transform: translateY(-6px);
-  border-color: var(--border-gold);
-  background: var(--bg-card-hover);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(184, 154, 96, 0.15);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-hover);
 }
 
 .solution-card:hover::after {
@@ -912,44 +914,42 @@ h1 em, h2 em, h3 em {
 
 .solution-num {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
-  color: rgba(184, 154, 96, 0.5);
+  font-size: 1.5rem;
+  color: var(--gold);
   margin-bottom: 16px;
   font-style: italic;
-}
-
-.solution-card:hover .solution-num {
-  color: var(--gold);
+  font-weight: 700;
 }
 
 .solution-card h3 {
   font-size: 1.45rem;
   margin-bottom: 14px;
+  color: var(--text-heading);
 }
 
 .solution-card p {
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 0.92rem;
   margin-bottom: 24px;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .card-link {
-  color: var(--gold-lt);
+  color: var(--gold-dark);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
   transition: var(--transition-smooth);
 }
 
 .card-link:hover {
-  color: #ffffff;
+  color: var(--text-heading);
   padding-left: 6px;
 }
 
 /* ==========================================================================
-   TESES TRIBUTÁRIAS EM ALTA (CARDS DE DESTAQUE JURÍDICO)
+   TESES TRIBUTÁRIAS EM ALTA (CARDS CLAROS COM BORDA DOURADA)
    ========================================================================== */
 .theses-grid {
   display: grid;
@@ -958,26 +958,26 @@ h1 em, h2 em, h3 em {
 }
 
 .thesis-card {
-  background: rgba(18, 24, 33, 0.7);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-md);
   padding: 28px 24px;
   transition: var(--transition-smooth);
-  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-luxury);
 }
 
 .thesis-card:hover {
-  border-color: var(--gold-lt);
+  border-color: var(--gold);
   transform: translateY(-4px);
-  background: rgba(24, 34, 48, 0.9);
+  box-shadow: var(--shadow-hover);
 }
 
 .thesis-tag {
   display: inline-block;
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--gold);
-  background: rgba(184, 154, 96, 0.12);
+  color: var(--gold-dark);
+  background: rgba(158, 123, 59, 0.1);
   border: 1px solid var(--border-gold);
   padding: 3px 10px;
   border-radius: var(--radius-full);
@@ -986,15 +986,16 @@ h1 em, h2 em, h3 em {
 }
 
 .thesis-card h4 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 10px;
+  color: var(--text-heading);
 }
 
 .thesis-card p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-size: 0.86rem;
+  color: var(--text-body);
   line-height: 1.55;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* ==========================================================================
@@ -1010,13 +1011,14 @@ h1 em, h2 em, h3 em {
 .diagnosis-intro h2 {
   font-size: clamp(2.2rem, 3.6vw, 3rem);
   margin-bottom: 12px;
+  color: var(--text-heading);
 }
 
 .diagnosis-intro p {
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 1.05rem;
   margin-bottom: 32px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .benefit-box {
@@ -1037,21 +1039,21 @@ h1 em, h2 em, h3 em {
 .benefit-item strong {
   display: block;
   font-size: 0.95rem;
-  color: var(--ivory);
+  color: var(--text-heading);
 }
 
 .benefit-item p {
   font-size: 0.85rem;
   margin-bottom: 0;
+  color: var(--text-body);
 }
 
 .diagnosis-form-card {
-  background: var(--bg-card);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: 36px;
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--shadow-deep);
+  box-shadow: var(--shadow-hover);
 }
 
 .form-group {
@@ -1061,8 +1063,8 @@ h1 em, h2 em, h3 em {
 .form-label {
   display: block;
   font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ivory);
+  font-weight: 700;
+  color: var(--text-heading);
   margin-bottom: 10px;
 }
 
@@ -1084,28 +1086,28 @@ h1 em, h2 em, h3 em {
   display: block;
   padding: 8px 16px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-light);
-  color: var(--text-secondary);
+  background: #fbf9f5;
+  border: 1px solid var(--border-gold);
+  color: var(--text-body);
   font-size: 0.84rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: var(--transition-smooth);
 }
 
 .radio-pill input:checked + span {
-  background: rgba(184, 154, 96, 0.2);
-  border-color: var(--gold);
-  color: var(--gold-lt);
-  font-weight: 600;
+  background: var(--gold-gradient);
+  border-color: var(--gold-dark);
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .form-select, .form-input {
   width: 100%;
   padding: 12px 16px;
-  background: rgba(11, 14, 18, 0.9);
-  border: 1px solid var(--border-light);
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-sm);
-  color: var(--text-primary);
+  color: var(--text-heading);
   font-family: var(--font-sans);
   font-size: 0.92rem;
   outline: none;
@@ -1113,8 +1115,8 @@ h1 em, h2 em, h3 em {
 }
 
 .form-select:focus, .form-input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 12px rgba(184, 154, 96, 0.25);
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 12px rgba(158, 123, 59, 0.2);
 }
 
 .input-row {
@@ -1140,15 +1142,15 @@ h1 em, h2 em, h3 em {
 }
 
 .testimonial-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-md);
   padding: 34px 28px;
-  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-luxury);
 }
 
 .stars {
-  color: #ffb800;
+  color: #f59e0b;
   font-size: 1.1rem;
   margin-bottom: 16px;
   letter-spacing: 2px;
@@ -1156,8 +1158,8 @@ h1 em, h2 em, h3 em {
 
 .testimonial-text {
   font-style: italic;
-  color: #cbd5e1;
-  font-size: 0.95rem;
+  color: #334155;
+  font-size: 0.98rem;
   margin-bottom: 24px;
   line-height: 1.65;
   font-family: var(--font-serif);
@@ -1165,17 +1167,17 @@ h1 em, h2 em, h3 em {
 
 .client-meta strong {
   display: block;
-  color: var(--ivory);
+  color: var(--text-heading);
   font-size: 0.95rem;
 }
 
 .client-meta span {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-size: 0.8rem;
 }
 
 /* ==========================================================================
-   FAQ ACORDEÃO
+   FAQ ACORDEÃO (CLARO & SOFISTICADO)
    ========================================================================== */
 .faq-container {
   max-width: 860px;
@@ -1188,15 +1190,16 @@ h1 em, h2 em, h3 em {
 }
 
 .accordion-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  background: #ffffff;
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-md);
   overflow: hidden;
   transition: var(--transition-smooth);
+  box-shadow: var(--shadow-luxury);
 }
 
 .accordion-item.active {
-  border-color: var(--border-gold);
+  border-color: var(--gold);
 }
 
 .accordion-header {
@@ -1204,10 +1207,10 @@ h1 em, h2 em, h3 em {
   padding: 22px 28px;
   background: transparent;
   border: none;
-  color: var(--ivory);
+  color: var(--text-heading);
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 600;
   text-align: left;
   display: flex;
   justify-content: space-between;
@@ -1217,13 +1220,14 @@ h1 em, h2 em, h3 em {
 }
 
 .accordion-header:hover {
-  color: var(--gold-lt);
+  color: var(--gold-dark);
 }
 
 .accordion-icon {
   font-size: 1.4rem;
-  color: var(--gold);
+  color: var(--gold-dark);
   transition: transform 0.3s ease;
+  font-weight: bold;
 }
 
 .accordion-item.active .accordion-icon {
@@ -1235,10 +1239,10 @@ h1 em, h2 em, h3 em {
   overflow: hidden;
   transition: max-height 0.35s ease, padding 0.35s ease;
   padding: 0 28px;
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 0.94rem;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .accordion-item.active .accordion-body {
@@ -1249,7 +1253,7 @@ h1 em, h2 em, h3 em {
    CTA BANNER & FOOTER
    ========================================================================== */
 .cta-banner {
-  background: linear-gradient(135deg, #141b24 0%, #0b0e12 100%);
+  background: #ede8dc;
   border-top: 1px solid var(--border-gold);
   border-bottom: 1px solid var(--border-gold);
   padding: 70px 0;
@@ -1259,20 +1263,21 @@ h1 em, h2 em, h3 em {
 .cta-banner-inner h2 {
   font-size: clamp(2.2rem, 3.6vw, 3rem);
   margin-bottom: 14px;
+  color: var(--text-heading);
 }
 
 .cta-banner-inner p {
-  color: var(--text-secondary);
+  color: var(--text-body);
   font-size: 1.1rem;
   max-width: 640px;
   margin: 0 auto 30px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .site-footer {
-  background: #07090c;
+  background: #111620;
   padding: 80px 0 40px;
-  border-top: 1px solid var(--border-light);
+  border-top: 2px solid var(--gold);
 }
 
 .footer-grid {
@@ -1286,8 +1291,16 @@ h1 em, h2 em, h3 em {
   margin-bottom: 18px;
 }
 
+.footer-logo .brand-name {
+  color: #ffffff;
+}
+
+.footer-logo .logo-icon {
+  stroke: var(--gold-lt);
+}
+
 .footer-about {
-  color: var(--text-secondary);
+  color: #94a3b8;
   font-size: 0.88rem;
   line-height: 1.65;
   font-weight: 300;
@@ -1308,7 +1321,7 @@ h1 em, h2 em, h3 em {
 }
 
 .footer-links a {
-  color: var(--text-secondary);
+  color: #cbd5e1;
   text-decoration: none;
   font-size: 0.88rem;
   transition: var(--transition-smooth);
@@ -1320,18 +1333,18 @@ h1 em, h2 em, h3 em {
 }
 
 .footer-contact-item {
-  color: var(--text-secondary);
+  color: #cbd5e1;
   font-size: 0.88rem;
   margin-bottom: 12px;
   line-height: 1.5;
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 30px;
   text-align: center;
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: #64748b;
 }
 
 .ethical-disclaimer {
@@ -1358,17 +1371,17 @@ h1 em, h2 em, h3 em {
 }
 
 .whatsapp-badge {
-  background: rgba(18, 24, 33, 0.96);
+  background: #ffffff;
   border: 1px solid var(--border-gold);
   padding: 6px 14px 6px 6px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--ivory);
+  font-weight: 700;
+  color: var(--text-heading);
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: var(--shadow-deep);
+  box-shadow: var(--shadow-luxury);
   animation: floatBounce 3s infinite ease-in-out;
 }
 
@@ -1384,9 +1397,9 @@ h1 em, h2 em, h3 em {
   display: inline-block;
   width: 7px;
   height: 7px;
-  background: #10b981;
+  background: #059669;
   border-radius: 50%;
-  box-shadow: 0 0 6px #10b981;
+  box-shadow: 0 0 6px #059669;
   margin-right: 4px;
 }
 
@@ -1446,14 +1459,13 @@ h1 em, h2 em, h3 em {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(11, 14, 18, 0.98);
-    backdrop-filter: var(--glass-blur);
+    background: #ffffff;
     flex-direction: column;
     padding: 28px 24px;
     gap: 20px;
     border-bottom: 1px solid var(--border-gold);
     display: none;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 
   .nav-menu.open {
