@@ -166,7 +166,7 @@
               <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação VIP
             </a>
             <a href="#antes-depois" class="btn btn-outline-gold">
-              <i class="fa-solid fa-camera-retro"></i> Ver Casos Reais Antes/Depois
+              <i class="fa-solid fa-camera-retro"></i> Ver Casos Reais & Vídeo
             </a>
           </div>
         </div>
@@ -214,7 +214,7 @@
     </section>
 
     <!-- ========================================================================
-         4. SHOWCASE BANNER DE ALTO IMPACTO (ANTES & DEPOIS MULTI-CASOS ROTATIVO)
+         4. SHOWCASE BANNER DE ALTO IMPACTO (SLIDER & VÍDEO TIME-LAPSE)
          ======================================================================== -->
     <section class="section showcase-banner-section" id="antes-depois">
       <div class="container">
@@ -226,104 +226,164 @@
             Resultados Reais & <span class="gold-text">Transformações Clínicas</span>
           </h2>
           <p class="section-desc" style="color: #a3acb9;">
-            Sem filtros ou maquiagem. Selecione os casos clínicos abaixo e <strong>arraste a linha divisória</strong> para inspecionar a restauração da jovialidade com naturalidade absoluta.
+            Sem filtros ou maquiagem. Acompanhe a restauração da jovialidade com naturalidade absoluta em alta definição.
           </p>
         </div>
 
-        <!-- Seletor de Casos (Tabs Interativas com Miniaturas e Badges) -->
-        <div class="cases-carousel-nav">
-          <button class="case-nav-btn active" data-case="1">
-            <div class="case-btn-num">CASO 01</div>
-            <div class="case-btn-info">
-              <strong>Firmeza &amp; Contorno Mandibular</strong>
-              <span>Radiesse® + Ultraformer MPT</span>
-            </div>
-            <i class="fa-solid fa-chevron-right case-arrow"></i>
+        <!-- Mode Switcher (Slider vs Video) -->
+        <div class="showcase-mode-switcher">
+          <button class="mode-switch-btn active" id="btn-mode-slider" data-mode="slider">
+            <i class="fa-solid fa-sliders"></i> Comparador Interativo (Arraste)
           </button>
-
-          <button class="case-nav-btn" data-case="2">
-            <div class="case-btn-num">CASO 02</div>
-            <div class="case-btn-info">
-              <strong>Rejuvenescimento do Olhar</strong>
-              <span>Preenchimento Olheiras + Toxina</span>
-            </div>
-            <i class="fa-solid fa-chevron-right case-arrow"></i>
-          </button>
-
-          <button class="case-nav-btn" data-case="3">
-            <div class="case-btn-num">CASO 03</div>
-            <div class="case-btn-info">
-              <strong>Clareamento de Melasma &amp; Glow</strong>
-              <span>Laser Lavieen (BB Laser)</span>
-            </div>
-            <i class="fa-solid fa-chevron-right case-arrow"></i>
+          <button class="mode-switch-btn" id="btn-mode-video" data-mode="video">
+            <i class="fa-solid fa-circle-play"></i> Vídeo de Evolução Time-Lapse (IA)
           </button>
         </div>
 
-        <!-- O Grande Banner Central com Split Slider Dinâmico -->
-        <div class="showcase-main-box">
-          <div class="showcase-split-container">
-            <div class="split-slider-container showcase-slider" id="main-split-slider">
-              <div class="slider-wrapper">
-                <!-- Imagem DEPOIS (Fundo) -->
-                <img id="img-depois" src="assets/resultado-depois.jpg" alt="Resultado Depois do Tratamento" class="slider-img" width="860" height="520" loading="eager">
-                <span class="slider-badge badge-after">DEPOIS DO PROTOCOLO</span>
+        <!-- VIEW 1: COMPARADOR SLIDER INTERATIVO -->
+        <div class="showcase-view-container active" id="view-slider">
+          <!-- Seletor de Casos -->
+          <div class="cases-carousel-nav">
+            <button class="case-nav-btn active" data-case="1">
+              <div class="case-btn-num">CASO 01</div>
+              <div class="case-btn-info">
+                <strong>Firmeza &amp; Contorno Mandibular</strong>
+                <span>Radiesse® + Ultraformer MPT</span>
+              </div>
+              <i class="fa-solid fa-chevron-right case-arrow"></i>
+            </button>
 
-                <!-- Imagem ANTES (Sobreposição com corte) -->
-                <div class="slider-before-wrap" id="before-wrap">
-                  <img id="img-antes" src="assets/resultado-antes.jpg" alt="Antes do Tratamento Dermatológico" class="slider-img" width="860" height="520" loading="eager">
-                  <span class="slider-badge badge-before">ANTES DA AVALIAÇÃO</span>
+            <button class="case-nav-btn" data-case="2">
+              <div class="case-btn-num">CASO 02</div>
+              <div class="case-btn-info">
+                <strong>Rejuvenescimento do Olhar</strong>
+                <span>Preenchimento Olheiras + Toxina</span>
+              </div>
+              <i class="fa-solid fa-chevron-right case-arrow"></i>
+            </button>
+
+            <button class="case-nav-btn" data-case="3">
+              <div class="case-btn-num">CASO 03</div>
+              <div class="case-btn-info">
+                <strong>Clareamento de Melasma &amp; Glow</strong>
+                <span>Laser Lavieen (BB Laser)</span>
+              </div>
+              <i class="fa-solid fa-chevron-right case-arrow"></i>
+            </button>
+          </div>
+
+          <!-- O Grande Banner Central com Split Slider Dinâmico -->
+          <div class="showcase-main-box">
+            <div class="showcase-split-container">
+              <div class="split-slider-container showcase-slider" id="main-split-slider">
+                <div class="slider-wrapper">
+                  <!-- Imagem DEPOIS (Fundo) -->
+                  <img id="img-depois" src="assets/resultado-depois.jpg" alt="Resultado Depois do Tratamento" class="slider-img" width="860" height="520" loading="eager">
+                  <span class="slider-badge badge-after">DEPOIS DO PROTOCOLO</span>
+
+                  <!-- Imagem ANTES (Sobreposição com corte) -->
+                  <div class="slider-before-wrap" id="before-wrap">
+                    <img id="img-antes" src="assets/resultado-antes.jpg" alt="Antes do Tratamento Dermatológico" class="slider-img" width="860" height="520" loading="eager">
+                    <span class="slider-badge badge-before">ANTES DA AVALIAÇÃO</span>
+                  </div>
+
+                  <!-- Manípulo de Arraste Iluminado -->
+                  <div class="slider-handle" id="slider-handle">
+                    <div class="handle-button">
+                      <i class="fa-solid fa-chevron-left"></i>
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                    <div class="handle-drag-hint">
+                      <i class="fa-solid fa-arrows-left-right"></i> ARRASTE
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <!-- Manípulo de Arraste Iluminado -->
-                <div class="slider-handle" id="slider-handle">
-                  <div class="handle-button">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <i class="fa-solid fa-chevron-right"></i>
+            <!-- Card Lateral de Detalhes do Caso & CTA Exclusivo -->
+            <div class="case-details-panel">
+              <div>
+                <div class="case-meta-tag" id="case-tag">Caso Clínico nº 01 • Paciente 42 anos</div>
+                <h3 class="case-title" id="case-title">Bioestimulação de Colágeno &amp; Contorno Mandibular</h3>
+                <p class="case-summary" id="case-desc">
+                  Queixa de perda de sustentação dérmica e linhas de cansaço. Tratamento realizado com aplicação em vetor de sustentação de Hidroxiapatita de Cálcio (Radiesse) e compactação dérmica com Ultraformer MPT.
+                </p>
+
+                <div class="case-highlights-box">
+                  <div class="highlight-item">
+                    <span class="hl-label">Evolução:</span>
+                    <strong id="case-tempo">60 dias após 1ª sessão</strong>
                   </div>
-                  <div class="handle-drag-hint">
-                    <i class="fa-solid fa-arrows-left-right"></i> ARRASTE
+                  <div class="highlight-item">
+                    <span class="hl-label">Downtime:</span>
+                    <strong>Zero (Retorno imediato)</strong>
                   </div>
+                  <div class="highlight-item">
+                    <span class="hl-label">Durabilidade:</span>
+                    <strong>18 a 24 meses</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="case-action-wrap">
+                <a id="case-whatsapp-btn" href="https://wa.me/5511994009450?text=Ol%C3%A1%2C%20Dra.%20Sofia%21%20Gostaria%20de%20avaliar%20um%20protocolo%20semelhante%20ao%20Caso%2001%20(Firmeza%20%26%20Contorno%20Mandibular)." class="btn btn-gold btn-full" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp"></i> Quero Este Resultado
+                </a>
+                <div class="auto-play-indicator">
+                  <span class="pulse-dot"></span> Alternando casos automaticamente a cada 6s
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Card Lateral de Detalhes do Caso & CTA Exclusivo -->
-          <div class="case-details-panel">
-            <div>
-              <div class="case-meta-tag" id="case-tag">Caso Clínico nº 01 • Paciente 42 anos</div>
-              <h3 class="case-title" id="case-title">Bioestimulação de Colágeno &amp; Contorno Mandibular</h3>
-              <p class="case-summary" id="case-desc">
-                Queixa de perda de sustentação dérmica e linhas de cansaço. Tratamento realizado com aplicação em vetor de sustentação de Hidroxiapatita de Cálcio (Radiesse) e compactação dérmica com Ultraformer MPT.
-              </p>
-
-              <div class="case-highlights-box">
-                <div class="highlight-item">
-                  <span class="hl-label">Evolução:</span>
-                  <strong id="case-tempo">60 dias após 1ª sessão</strong>
-                </div>
-                <div class="highlight-item">
-                  <span class="hl-label">Downtime:</span>
-                  <strong>Zero (Retorno imediato)</strong>
-                </div>
-                <div class="highlight-item">
-                  <span class="hl-label">Durabilidade:</span>
-                  <strong>18 a 24 meses</strong>
-                </div>
+        <!-- VIEW 2: VÍDEO TIME-LAPSE DE TRANSFORMAÇÃO -->
+        <div class="showcase-view-container" id="view-video">
+          <div class="showcase-main-box">
+            <div class="showcase-video-box">
+              <div class="video-live-badge">
+                <span class="pulse-dot"></span> VÍDEO DE EVOLUÇÃO CONTÍNUA
               </div>
+              <video class="showcase-video-player" id="main-evolution-video" autoplay loop muted playsinline controls poster="assets/transformacao-antes.jpg">
+                <source src="assets/evolucao.mp4" type="video/mp4">
+                Seu navegador não suporta a reprodução deste vídeo.
+              </video>
             </div>
 
-            <div class="case-action-wrap">
-              <a id="case-whatsapp-btn" href="https://wa.me/5511994009450?text=Ol%C3%A1%2C%20Dra.%20Sofia%21%20Gostaria%20de%20avaliar%20um%20protocolo%20semelhante%20ao%20Caso%2001%20(Firmeza%20%26%20Contorno%20Mandibular)." class="btn btn-gold btn-full" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp"></i> Quero Este Resultado
-              </a>
-              <div class="auto-play-indicator">
-                <span class="pulse-dot"></span> Alternando casos automaticamente a cada 6s
+            <div class="case-details-panel">
+              <div>
+                <div class="case-meta-tag">Transformação Global • Rejuvenescimento 12 Anos</div>
+                <h3 class="case-title">Evolução Contínua em Vídeo Time-Lapse</h3>
+                <p class="case-summary">
+                  Acompanhe a transição morfológica em alta definição: suavização completa de bolsas e olheiras pesadas, lifting e ancoragem do terço inferior e restauração do viço luminoso de porcelana.
+                </p>
+
+                <div class="case-highlights-box">
+                  <div class="highlight-item">
+                    <span class="hl-label">Protocolo:</span>
+                    <strong>Full-Face Medical Overhaul</strong>
+                  </div>
+                  <div class="highlight-item">
+                    <span class="hl-label">Tecnologias:</span>
+                    <strong>Ultraformer MPT + Radiesse + Laser</strong>
+                  </div>
+                  <div class="highlight-item">
+                    <span class="hl-label">Efeito:</span>
+                    <strong>Naturalidade &amp; Zero Artificialidade</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="case-action-wrap">
+                <a href="https://wa.me/5511994009450?text=Ol%C3%A1%2C%20Dra.%20Sofia%21%20Vi%20o%20v%C3%ADdeo%20de%20evolu%C3%A7%C3%A3o%20time-lapse%20no%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20VIP." class="btn btn-gold btn-full" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Individual
+                </a>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 

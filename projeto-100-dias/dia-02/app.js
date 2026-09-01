@@ -1,11 +1,12 @@
 /**
  * DRA. SOFIA MORAES | DERMATOLOGIA & ESTÉTICA MÉDICA AVANÇADA
- * Interactive Logic, Multi-Case Split Slider Showcase, Quiz Wizard & WhatsApp Automation
+ * Interactive Logic, Multi-Case Split Slider Showcase, Video Time-Lapse, Quiz Wizard & WhatsApp Automation
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
+  initShowcaseModeSwitcher();
   initShowcaseBanner();
   initTabs();
   initQuizWizard();
@@ -62,7 +63,39 @@ function initMobileMenu() {
 }
 
 /* --------------------------------------------------------------------------
-   3. Multi-Case Split Slider Showcase Banner (Auto-play + Manual Control)
+   3. Showcase Mode Switcher (Slider vs Video Time-Lapse)
+   -------------------------------------------------------------------------- */
+function initShowcaseModeSwitcher() {
+  const btnSlider = document.getElementById('btn-mode-slider');
+  const btnVideo = document.getElementById('btn-mode-video');
+  const viewSlider = document.getElementById('view-slider');
+  const viewVideo = document.getElementById('view-video');
+  const videoEl = document.getElementById('main-evolution-video');
+
+  if (!btnSlider || !btnVideo || !viewSlider || !viewVideo) return;
+
+  btnSlider.addEventListener('click', () => {
+    btnSlider.classList.add('active');
+    btnVideo.classList.remove('active');
+    viewSlider.classList.add('active');
+    viewVideo.classList.remove('active');
+    if (videoEl) videoEl.pause();
+  });
+
+  btnVideo.addEventListener('click', () => {
+    btnVideo.classList.add('active');
+    btnSlider.classList.remove('active');
+    viewVideo.classList.add('active');
+    viewSlider.classList.remove('active');
+    if (videoEl) {
+      videoEl.currentTime = 0;
+      videoEl.play().catch(() => {});
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   4. Multi-Case Split Slider Showcase Banner (Auto-play + Manual Control)
    -------------------------------------------------------------------------- */
 function initShowcaseBanner() {
   const container = document.getElementById('main-split-slider');
@@ -233,7 +266,7 @@ function initShowcaseBanner() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Procedure Tabs Switcher
+   5. Procedure Tabs Switcher
    -------------------------------------------------------------------------- */
 function initTabs() {
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -262,7 +295,7 @@ function initTabs() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Aesthetic Diagnostic Quiz Wizard (3 Steps)
+   6. Aesthetic Diagnostic Quiz Wizard (3 Steps)
    -------------------------------------------------------------------------- */
 function initQuizWizard() {
   const quizSteps = document.querySelectorAll('.quiz-step');
@@ -384,7 +417,7 @@ function initQuizWizard() {
 }
 
 /* --------------------------------------------------------------------------
-   6. Animated Metric Counters
+   7. Animated Metric Counters
    -------------------------------------------------------------------------- */
 function initCountUp() {
   const metricNumbers = document.querySelectorAll('.metric-number[data-target]');
@@ -427,7 +460,7 @@ function initCountUp() {
 }
 
 /* --------------------------------------------------------------------------
-   7. FAQ Accordion
+   8. FAQ Accordion
    -------------------------------------------------------------------------- */
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
@@ -452,7 +485,7 @@ function initFaqAccordion() {
 }
 
 /* --------------------------------------------------------------------------
-   8. Contact Form Handler (WhatsApp Direct)
+   9. Contact Form Handler (WhatsApp Direct)
    -------------------------------------------------------------------------- */
 function initContactForm() {
   const contactForm = document.getElementById('contact-form');
