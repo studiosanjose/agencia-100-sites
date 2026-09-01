@@ -105,8 +105,8 @@
 
       <nav class="nav-menu" aria-label="Navegação Principal">
         <ul class="nav-links">
-          <li><a href="#procedimentos" class="nav-link">Tratamentos</a></li>
           <li><a href="#antes-depois" class="nav-link">Antes & Depois</a></li>
+          <li><a href="#procedimentos" class="nav-link">Tratamentos</a></li>
           <li><a href="#diagnostico" class="nav-link">Diagnóstico Online</a></li>
           <li><a href="#sobre" class="nav-link">A Médica</a></li>
           <li><a href="#depoimentos" class="nav-link">Avaliações</a></li>
@@ -165,8 +165,8 @@
             <a href="https://wa.me/5511994009450?text=Ol%C3%A1%2C%20Dra.%20Sofia%20Moraes%21%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20m%C3%A9dica%20individualizada." class="btn btn-gold" target="_blank" rel="noopener">
               <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação VIP
             </a>
-            <a href="#diagnostico" class="btn btn-outline-gold">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Diagnóstico Estético Online
+            <a href="#antes-depois" class="btn btn-outline-gold">
+              <i class="fa-solid fa-camera-retro"></i> Ver Casos Reais Antes/Depois
             </a>
           </div>
         </div>
@@ -214,7 +214,121 @@
     </section>
 
     <!-- ========================================================================
-         4. AGING SCIENCE / 35+ REALITY
+         4. SHOWCASE BANNER DE ALTO IMPACTO (ANTES & DEPOIS MULTI-CASOS ROTATIVO)
+         ======================================================================== -->
+    <section class="section showcase-banner-section" id="antes-depois">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag" style="background: rgba(197, 155, 109, 0.2); color: var(--primary-gold-light); border-color: rgba(197, 155, 109, 0.4);">
+            <i class="fa-solid fa-camera-retro"></i> A Imagem Vale Mais Que Mil Palavras
+          </span>
+          <h2 class="section-title text-white">
+            Resultados Reais & <span class="gold-text">Transformações Clínicas</span>
+          </h2>
+          <p class="section-desc" style="color: #a3acb9;">
+            Sem filtros ou maquiagem. Selecione os casos clínicos abaixo e <strong>arraste a linha divisória</strong> para inspecionar a restauração da jovialidade com naturalidade absoluta.
+          </p>
+        </div>
+
+        <!-- Seletor de Casos (Tabs Interativas com Miniaturas e Badges) -->
+        <div class="cases-carousel-nav">
+          <button class="case-nav-btn active" data-case="1">
+            <div class="case-btn-num">CASO 01</div>
+            <div class="case-btn-info">
+              <strong>Firmeza &amp; Contorno Mandibular</strong>
+              <span>Radiesse® + Ultraformer MPT</span>
+            </div>
+            <i class="fa-solid fa-chevron-right case-arrow"></i>
+          </button>
+
+          <button class="case-nav-btn" data-case="2">
+            <div class="case-btn-num">CASO 02</div>
+            <div class="case-btn-info">
+              <strong>Rejuvenescimento do Olhar</strong>
+              <span>Preenchimento Olheiras + Toxina</span>
+            </div>
+            <i class="fa-solid fa-chevron-right case-arrow"></i>
+          </button>
+
+          <button class="case-nav-btn" data-case="3">
+            <div class="case-btn-num">CASO 03</div>
+            <div class="case-btn-info">
+              <strong>Clareamento de Melasma &amp; Glow</strong>
+              <span>Laser Lavieen (BB Laser)</span>
+            </div>
+            <i class="fa-solid fa-chevron-right case-arrow"></i>
+          </button>
+        </div>
+
+        <!-- O Grande Banner Central com Split Slider Dinâmico -->
+        <div class="showcase-main-box">
+          <div class="showcase-split-container">
+            <div class="split-slider-container showcase-slider" id="main-split-slider">
+              <div class="slider-wrapper">
+                <!-- Imagem DEPOIS (Fundo) -->
+                <img id="img-depois" src="assets/resultado-depois.jpg" alt="Resultado Depois do Tratamento" class="slider-img" width="860" height="520" loading="eager">
+                <span class="slider-badge badge-after">DEPOIS DO PROTOCOLO</span>
+
+                <!-- Imagem ANTES (Sobreposição com corte) -->
+                <div class="slider-before-wrap" id="before-wrap">
+                  <img id="img-antes" src="assets/resultado-antes.jpg" alt="Antes do Tratamento Dermatológico" class="slider-img" width="860" height="520" loading="eager">
+                  <span class="slider-badge badge-before">ANTES DA AVALIAÇÃO</span>
+                </div>
+
+                <!-- Manípulo de Arraste Iluminado -->
+                <div class="slider-handle" id="slider-handle">
+                  <div class="handle-button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </div>
+                  <div class="handle-drag-hint">
+                    <i class="fa-solid fa-arrows-left-right"></i> ARRASTE
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Lateral de Detalhes do Caso & CTA Exclusivo -->
+          <div class="case-details-panel">
+            <div>
+              <div class="case-meta-tag" id="case-tag">Caso Clínico nº 01 • Paciente 42 anos</div>
+              <h3 class="case-title" id="case-title">Bioestimulação de Colágeno &amp; Contorno Mandibular</h3>
+              <p class="case-summary" id="case-desc">
+                Queixa de perda de sustentação dérmica e linhas de cansaço. Tratamento realizado com aplicação em vetor de sustentação de Hidroxiapatita de Cálcio (Radiesse) e compactação dérmica com Ultraformer MPT.
+              </p>
+
+              <div class="case-highlights-box">
+                <div class="highlight-item">
+                  <span class="hl-label">Evolução:</span>
+                  <strong id="case-tempo">60 dias após 1ª sessão</strong>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-label">Downtime:</span>
+                  <strong>Zero (Retorno imediato)</strong>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-label">Durabilidade:</span>
+                  <strong>18 a 24 meses</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-action-wrap">
+              <a id="case-whatsapp-btn" href="https://wa.me/5511994009450?text=Ol%C3%A1%2C%20Dra.%20Sofia%21%20Gostaria%20de%20avaliar%20um%20protocolo%20semelhante%20ao%20Caso%2001%20(Firmeza%20%26%20Contorno%20Mandibular)." class="btn btn-gold btn-full" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Quero Este Resultado
+              </a>
+              <div class="auto-play-indicator">
+                <span class="pulse-dot"></span> Alternando casos automaticamente a cada 6s
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. AGING SCIENCE / 35+ REALITY
          ======================================================================== -->
     <section class="section science-section" id="ciencia">
       <div class="container">
@@ -264,7 +378,7 @@
     </section>
 
     <!-- ========================================================================
-         5. INTERACTIVE PROCEDURES & TECH TABS
+         6. INTERACTIVE PROCEDURES & TECH TABS
          ======================================================================== -->
     <section class="section procedures-section" id="procedimentos">
       <div class="container">
@@ -549,53 +663,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         6. INTERACTIVE BEFORE & AFTER COMPARISON (SPLIT SLIDER)
-         ======================================================================== -->
-    <section class="section before-after-section" id="antes-depois">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i class="fa-solid fa-sliders"></i> Resultados Reais</span>
-          <h2 class="section-title">Evolução Clínica & <span class="gold-text">Antes / Depois</span></h2>
-          <p class="section-desc">
-            Arraste a linha divisória interativa para visualizar a restauração sutil da densidade da derme, luminosidade e firmeza facial sem perder a identidade.
-          </p>
-        </div>
-
-        <div class="split-slider-container">
-          <div class="slider-wrapper">
-            <!-- Imagem DEPOIS (Fundo) -->
-            <img src="assets/resultado-depois.jpg" alt="Resultado após protocolo de bioestimulador e rejuvenescimento médico" class="slider-img" width="860" height="520" loading="lazy">
-            <span class="slider-badge badge-after">DEPOIS DO PROTOCOLO</span>
-
-            <!-- Imagem ANTES (Sobreposição com corte) -->
-            <div class="slider-before-wrap">
-              <img src="assets/resultado-antes.jpg" alt="Antes do tratamento dermatológico com queixa de flacidez e cansaço facial" class="slider-img" width="860" height="520" loading="lazy">
-              <span class="slider-badge badge-before">ANTES DA AVALIAÇÃO</span>
-            </div>
-
-            <!-- Manípulo de Arraste -->
-            <div class="slider-handle">
-              <div class="handle-button">
-                <i class="fa-solid fa-chevron-left"></i>
-                <i class="fa-solid fa-chevron-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="slider-info-box">
-          <div class="slider-info-text">
-            <strong>Protocolo: Bioestimulação de Colágeno + Suavização de Olheiras</strong>
-            <span>Paciente de 42 anos • Resultados graduais e naturais após 60 dias • Sem distorções anatômicas</span>
-          </div>
-          <a href="https://wa.me/5511994009450?text=Ol%C3%A1%2C%20Dra.%20Sofia%21%20Vi%20o%20resultado%20do%20Antes%20e%20Depois%20no%20site%20e%20gostaria%20de%20fazer%20uma%20avalia%C3%A7%C3%A3o." class="btn btn-gold btn-sm" target="_blank" rel="noopener">
-            Quero Minha Avaliação <i class="fa-brands fa-whatsapp"></i>
-          </a>
         </div>
       </div>
     </section>

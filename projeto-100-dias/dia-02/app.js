@@ -1,12 +1,12 @@
 /**
  * DRA. SOFIA MORAES | DERMATOLOGIA & ESTÉTICA MÉDICA AVANÇADA
- * Interactive Logic, Split Slider, Quiz Wizard & WhatsApp Automation
+ * Interactive Logic, Multi-Case Split Slider Showcase, Quiz Wizard & WhatsApp Automation
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
-  initSplitSlider();
+  initShowcaseBanner();
   initTabs();
   initQuizWizard();
   initCountUp();
@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
    -------------------------------------------------------------------------- */
 function initHeaderScroll() {
   const header = document.querySelector('.site-header');
+  if (!header) return;
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       header.classList.add('scrolled');
@@ -60,58 +62,174 @@ function initMobileMenu() {
 }
 
 /* --------------------------------------------------------------------------
-   3. Interactive Split Slider (Before / After)
+   3. Multi-Case Split Slider Showcase Banner (Auto-play + Manual Control)
    -------------------------------------------------------------------------- */
-function initSplitSlider() {
-  const container = document.querySelector('.split-slider-container');
-  const beforeWrap = document.querySelector('.slider-before-wrap');
-  const handle = document.querySelector('.slider-handle');
+function initShowcaseBanner() {
+  const container = document.getElementById('main-split-slider');
+  const beforeWrap = document.getElementById('before-wrap');
+  const handle = document.getElementById('slider-handle');
+  const imgAntes = document.getElementById('img-antes');
+  const imgDepois = document.getElementById('img-depois');
+  
+  const caseTag = document.getElementById('case-tag');
+  const caseTitle = document.getElementById('case-title');
+  const caseDesc = document.getElementById('case-desc');
+  const caseTempo = document.getElementById('case-tempo');
+  const caseWaBtn = document.getElementById('case-whatsapp-btn');
+  const navBtns = document.querySelectorAll('.case-nav-btn');
 
-  if (!container || !beforeWrap || !handle) return;
+  if (!container || !beforeWrap || !handle || !imgAntes || !imgDepois) return;
 
+  // Case Data Registry
+  const casesData = {
+    1: {
+      tag: 'Caso Clínico nº 01 • Paciente 42 anos',
+      title: 'Bioestimulação de Colágeno & Contorno Mandibular',
+      desc: 'Queixa de perda de sustentação dérmica e linhas de cansaço. Tratamento realizado com aplicação em vetor de sustentação de Hidroxiapatita de Cálcio (Radiesse) e compactação dérmica com Ultraformer MPT.',
+      tempo: '60 dias após 1ª sessão',
+      imgAntes: 'assets/resultado-antes.jpg',
+      imgDepois: 'assets/resultado-depois.jpg',
+      waText: 'Olá, Dra. Sofia! Gostaria de avaliar um protocolo semelhante ao Caso 01 (Firmeza & Contorno Mandibular).'
+    },
+    2: {
+      tag: 'Caso Clínico nº 02 • Paciente 38 anos',
+      title: 'Rejuvenescimento do Olhar & Suavização de Olheiras',
+      desc: 'Queixa de olhar pesado, olheiras profundas e sulco lacrimal aparente. Protocolo realizado com Ácido Hialurônico de micro-partículas e Toxina Botulínica preventiva na glabela e cauda dos olhos.',
+      tempo: '30 dias após aplicação',
+      imgAntes: 'assets/caso2-antes.jpg',
+      imgDepois: 'assets/caso2-depois.jpg',
+      waText: 'Olá, Dra. Sofia! Gostaria de avaliar um protocolo semelhante ao Caso 02 (Rejuvenescimento do Olhar & Olheiras).'
+    },
+    3: {
+      tag: 'Caso Clínico nº 03 • Paciente 44 anos',
+      title: 'Clareamento de Melasma & Uniformização com Laser Lavieen',
+      desc: 'Queixa de manchas solares resistentes, poros dilatados e textura opaca. Realizadas 3 sessões de Laser Lavieen de Túlio 1927nm com drug delivery de antioxidantes e clareadores tópicos.',
+      tempo: '45 dias após 3ª sessão',
+      imgAntes: 'assets/caso3-antes.jpg',
+      imgDepois: 'assets/caso3-depois.jpg',
+      waText: 'Olá, Dra. Sofia! Gostaria de avaliar um protocolo semelhante ao Caso 03 (Clareamento de Melasma & Glow Lavieen).'
+    }
+  };
+
+  let currentCase = 1;
   let isDragging = false;
+  let autoPlayTimer = null;
+  let isUserInteracting = false;
 
-  function updateSliderPosition(clientX) {
-    const rect = container.getBoundingClientRect();
-    let position = ((clientX - rect.left) / rect.width) * 100;
+  // Function to switch case
+  function loadCase(caseNum) {
+    const data = casesData[caseNum];
+    if (!data) return;
 
-    // Constrain position between 5% and 95%
-    if (position < 5) position = 5;
-    if (position > 95) position = 95;
+    currentCase = caseNum;
 
-    beforeWrap.style.width = `${position}%`;
-    handle.style.left = `${position}%`;
+    // Fade effect during switch
+    container.style.opacity = '0.4';
+    setTimeout(() => {
+      imgAntes.src = data.imgAntes;
+      imgDepois.src = data.imgDepois;
+      if (caseTag) caseTag.textContent = data.tag;
+      if (caseTitle) caseTitle.textContent = data.title;
+      if (caseDesc) caseDesc.textContent = data.desc;
+      if (caseTempo) caseTempo.textContent = data.tempo;
+      if (caseWaBtn) {
+        caseWaBtn.href = `https://wa.me/5511994009450?text=${encodeURIComponent(data.waText)}`;
+      }
+      container.style.opacity = '1';
+    }, 180);
+
+    // Update active button
+    navBtns.forEach(btn => {
+      if (parseInt(btn.getAttribute('data-case')) === caseNum) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Reset handle to center
+    setSliderPosition(50);
   }
 
-  // Mouse Events
+  // Button clicks
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const caseNum = parseInt(btn.getAttribute('data-case'));
+      loadCase(caseNum);
+      pauseAutoPlay();
+    });
+  });
+
+  // Slider Dragging Logic
+  function setSliderPosition(percentage) {
+    if (percentage < 5) percentage = 5;
+    if (percentage > 95) percentage = 95;
+
+    beforeWrap.style.width = `${percentage}%`;
+    handle.style.left = `${percentage}%`;
+  }
+
+  function updateSliderFromEvent(clientX) {
+    const rect = container.getBoundingClientRect();
+    let position = ((clientX - rect.left) / rect.width) * 100;
+    setSliderPosition(position);
+  }
+
+  // Mouse drag
   container.addEventListener('mousedown', (e) => {
     isDragging = true;
-    updateSliderPosition(e.clientX);
+    isUserInteracting = true;
+    updateSliderFromEvent(e.clientX);
+    pauseAutoPlay();
   });
 
   window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    updateSliderPosition(e.clientX);
+    updateSliderFromEvent(e.clientX);
   });
 
   window.addEventListener('mouseup', () => {
     isDragging = false;
   });
 
-  // Touch Events
+  // Touch drag
   container.addEventListener('touchstart', (e) => {
     isDragging = true;
-    updateSliderPosition(e.touches[0].clientX);
+    isUserInteracting = true;
+    updateSliderFromEvent(e.touches[0].clientX);
+    pauseAutoPlay();
   }, { passive: true });
 
   window.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
-    updateSliderPosition(e.touches[0].clientX);
+    updateSliderFromEvent(e.touches[0].clientX);
   }, { passive: true });
 
   window.addEventListener('touchend', () => {
     isDragging = false;
   });
+
+  // Auto-play Rotation (cycles cases every 6.5 seconds)
+  function startAutoPlay() {
+    autoPlayTimer = setInterval(() => {
+      if (!isUserInteracting) {
+        let nextCase = currentCase + 1;
+        if (nextCase > 3) nextCase = 1;
+        loadCase(nextCase);
+      }
+    }, 6500);
+  }
+
+  function pauseAutoPlay() {
+    clearInterval(autoPlayTimer);
+    // Resume autoplay after 12 seconds of inactivity
+    setTimeout(() => {
+      isUserInteracting = false;
+      startAutoPlay();
+    }, 12000);
+  }
+
+  startAutoPlay();
 }
 
 /* --------------------------------------------------------------------------
@@ -157,7 +275,6 @@ function initQuizWizard() {
   const quizData = {
     prioridade: '',
     faixaEtaria: '',
-    procedimentoAnterior: '',
     nome: '',
     telefone: ''
   };
@@ -166,7 +283,6 @@ function initQuizWizard() {
   document.querySelectorAll('.quiz-option-card').forEach(card => {
     card.addEventListener('click', () => {
       const parentStep = card.closest('.quiz-step');
-      const stepNum = parentStep.getAttribute('data-step');
       const field = card.getAttribute('data-field');
       const value = card.getAttribute('data-value');
 
@@ -258,8 +374,7 @@ function initQuizWizard() {
         `👤 *Nome:* ${quizData.nome}\n` +
         `📱 *WhatsApp:* ${quizData.telefone}\n` +
         `🎯 *Principal Queixa/Foco:* ${quizData.prioridade || 'Harmonização & Rejuvenescimento'}\n` +
-        `⏳ *Faixa Etária:* ${quizData.faixaEtaria || 'Não informada'}\n` +
-        `💉 *Já realizou procedimentos antes:* ${quizData.procedimentoAnterior || 'Primeira vez'}\n\n` +
+        `⏳ *Faixa Etária:* ${quizData.faixaEtaria || 'Não informada'}\n\n` +
         `Gostaria de verificar a disponibilidade de horários para este mês!`;
 
       const whatsappUrl = `https://wa.me/${phoneClinic}?text=${encodeURIComponent(msg)}`;
@@ -348,14 +463,12 @@ function initContactForm() {
     const nome = document.getElementById('contact-nome').value.trim();
     const phone = document.getElementById('contact-phone').value.trim();
     const procedimento = document.getElementById('contact-procedimento').value;
-    const mensagem = document.getElementById('contact-msg').value.trim();
 
     const phoneClinic = '5511994009450';
     const msg = `Olá, Dra. Sofia Moraes! ✨\n\nGostaria de agendar uma avaliação na clínica:\n\n` +
       `👤 *Nome:* ${nome}\n` +
       `📱 *Telefone:* ${phone}\n` +
-      `💉 *Interesse:* ${procedimento || 'Consulta Geral de Dermatologia'}\n` +
-      (mensagem ? `📝 *Mensagem:* ${mensagem}\n\n` : '\n') +
+      `💉 *Interesse:* ${procedimento || 'Consulta Geral de Dermatologia'}\n\n` +
       `Aguardo o retorno para agendarmos o melhor horário!`;
 
     const whatsappUrl = `https://wa.me/${phoneClinic}?text=${encodeURIComponent(msg)}`;
