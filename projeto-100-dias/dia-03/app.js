@@ -260,3 +260,78 @@ function initAnimatedCounters() {
 
   counters.forEach(counter => observer.observe(counter));
 }
+
+/* ==========================================================================
+   6. TIME-LAPSE SCRUBBER & SHOWCASE MODE SWITCHER
+   ========================================================================== */
+window.switchShowcaseMode = function(mode) {
+  const sliderView = document.getElementById('showcaseSliderView');
+  const timelapseView = document.getElementById('showcaseTimelapseView');
+  const tabSliderBtn = document.getElementById('tabSliderBtn');
+  const tabTimelapseBtn = document.getElementById('tabTimelapseBtn');
+
+  if (mode === 'slider') {
+    if (sliderView) sliderView.style.display = 'block';
+    if (timelapseView) timelapseView.style.display = 'none';
+    if (tabSliderBtn) tabSliderBtn.classList.add('active');
+    if (tabTimelapseBtn) tabTimelapseBtn.classList.remove('active');
+  } else {
+    if (sliderView) sliderView.style.display = 'none';
+    if (timelapseView) timelapseView.style.display = 'block';
+    if (tabSliderBtn) tabSliderBtn.classList.remove('active');
+    if (tabTimelapseBtn) tabTimelapseBtn.classList.add('active');
+    initMainTimelapseScrubber();
+  }
+};
+
+function initMainTimelapseScrubber() {
+  const container = document.getElementById('mainPlayerScrubber');
+  if (!container || container.dataset.initialized) return;
+  container.dataset.initialized = 'true';
+
+  const layers = container.querySelectorAll('.frame-layer');
+  const nodes = container.querySelectorAll('.main-step-node');
+  const fill = document.getElementById('mainScrubFill');
+  const statusEl = document.getElementById('mainTelemetryStatus');
+  const effEl = document.getElementById('mainTelemetryEff');
+
+  const telemetryData = {
+    1: { status: 'Fase 1: Telhado Convencional (0 kW)', eff: 'Sem Geração Solar' },
+    2: { status: 'Fase 2: Instalação das Estruturas e Placas All-Black', eff: 'Montagem Mecânica • 0 kW' },
+    3: { status: 'Fase 3: Inversor & Bateria Conectados', eff: 'Homologação Ativa • 6.4 kWp' },
+    4: { status: 'Fase 4: Conforto Total (Ar-Condicionado 21°C)', eff: '⚡ 11.7 kWp Gerando • Fatura -95%' }
+  };
+
+  function setStep(step) {
+    layers.forEach(l => l.style.opacity = parseInt(l.dataset.step) === step ? '1' : '0');
+    nodes.forEach(n => {
+      const isAct = parseInt(n.dataset.step) === step;
+      n.style.background = isAct ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255,255,255,0.05)';
+      n.style.borderColor = isAct ? 'var(--solar-amber)' : 'var(--border-subtle)';
+      n.style.color = isAct ? 'var(--solar-gold)' : 'var(--text-muted)';
+    });
+    if (fill) fill.style.width = `${step * 25}%`;
+    if (telemetryData[step]) {
+      if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-bolt" style="color: var(--solar-gold); margin-right: 6px;"></i> ${telemetryData[step].status}`;
+      if (effEl) effEl.textContent = telemetryData[step].eff;
+    }
+  }
+
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const pct = Math.max(0, Math.min(1, x / rect.width));
+    let step = Math.ceil(pct * 4);
+    if (step < 1) step = 1;
+    if (step > 4) step = 4;
+    setStep(step);
+  });
+
+  nodes.forEach(n => {
+    n.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setStep(parseInt(n.dataset.step));
+    });
+  });
+}
+

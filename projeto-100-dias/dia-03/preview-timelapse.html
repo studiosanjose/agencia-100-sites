@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview & Storyboard Time-Lapse Solar | Helios Energy (Dia 03)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      padding: 40px 0 80px;
+    }
+
+    .preview-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .timelapse-showcase {
+      max-width: 1000px;
+      margin: 0 auto 50px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-solar);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-solar);
+    }
+
+    .player-container {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #000;
+      cursor: ew-resize;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    }
+
+    .player-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none; /* Ativado se o video MP4 existir */
+    }
+
+    .frame-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .frame-layer.active {
+      opacity: 1;
+    }
+
+    .player-overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .telemetry-pill {
+      background: rgba(6, 9, 17, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-solar);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .telemetry-pill i {
+      color: var(--solar-gold);
+    }
+
+    .timeline-scrubber {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(6, 9, 17, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      z-index: 20;
+    }
+
+    .steps-indicator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .step-node {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .step-node.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--solar-amber);
+      color: var(--solar-gold);
+    }
+
+    .scrub-progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .scrub-progress-fill {
+      height: 100%;
+      width: 25%;
+      background: linear-gradient(90deg, var(--solar-amber), var(--solar-gold), var(--eco-emerald));
+      border-radius: 999px;
+      transition: width 0.15s ease;
+      box-shadow: 0 0 10px var(--solar-glow);
+    }
+
+    .prompt-box {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 30px;
+    }
+
+    .prompt-box h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-snippet {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--solar-amber);
+      color: var(--solar-gold);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .copy-btn:hover {
+      background: var(--solar-amber);
+      color: #060911;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="preview-header">
+      <div class="badge">
+        <i class="fa-solid fa-film"></i>
+        Evolução da Obra Solar • Google Vids Storyboard
+      </div>
+      <h1 style="font-family: var(--font-display); font-size: 2.6rem; color: #fff; margin-bottom: 10px;">
+        Time-Lapse Interativo da Instalação ao Conforto
+      </h1>
+      <p style="color: var(--text-muted); max-width: 680px; margin: 0 auto;">
+        Passe o mouse sobre a área do player para avançar e retroceder no tempo da obra.
+      </p>
+    </div>
+
+    <div class="timelapse-showcase">
+      <!-- Player Interativo -->
+      <div class="player-container" id="playerScrubber">
+        
+        <!-- Camadas dos 4 Frames Gerados -->
+        <div class="frame-layer active" style="background-image: url('assets/telhado-antes.jpg');" data-step="1"></div>
+        <div class="frame-layer" style="background-image: url('assets/step1-instalacao.jpg');" data-step="2"></div>
+        <div class="frame-layer" style="background-image: url('assets/step2-inversor.jpg');" data-step="3"></div>
+        <div class="frame-layer" style="background-image: url('assets/step3-ar-condicionado.jpg');" data-step="4"></div>
+
+        <!-- Video Tag (Carrega se o arquivo MP4 do Google Vids for exportado) -->
+        <video id="vidsVideo" loop muted playsinline poster="assets/step1-instalacao.jpg">
+          <source src="assets/timelapse-solar.mp4" type="video/mp4">
+        </video>
+
+        <!-- Overlay de Telemetria -->
+        <div class="player-overlay">
+          <div class="telemetry-pill">
+            <i class="fa-solid fa-bolt"></i>
+            <span id="telemetryStatus">Fase 1: Telhado Convencional (0 kW)</span>
+          </div>
+          <div class="telemetry-pill" style="border-color: var(--border-emerald);">
+            <i class="fa-solid fa-solar-panel" style="color: var(--eco-emerald);"></i>
+            <span id="telemetryEfficiency">Sem Geração</span>
+          </div>
+        </div>
+
+        <!-- Scrubber Bar -->
+        <div class="timeline-scrubber">
+          <div class="steps-indicator">
+            <div class="step-node active" data-step="1">1. Telhado Antes</div>
+            <div class="step-node" data-step="2">2. Instalação Placas</div>
+            <div class="step-node" data-step="3">3. Inversor & Bateria</div>
+            <div class="step-node" data-step="4">4. Ar-Condicionado 100% Solar</div>
+          </div>
+          <div class="scrub-progress-bar">
+            <div class="scrub-progress-fill" id="scrubFill"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Prompts Prontos para Google Vids -->
+      <div class="prompt-box">
+        <h3><i class="fa-brands fa-google" style="color: var(--solar-gold);"></i> Roteiro de Prompts para Google Vids / Veo AI</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+          Copie cada prompt abaixo no gerador do <strong>Google Vids</strong> para compilar o vídeo final de 12 a 16 segundos:
+        </p>
+
+        <div class="prompt-snippet">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('Copiar', '').trim())">Copiar</button>
+          <strong>Cena 1 (Instalação):</strong><br>
+          Cinematic fast time-lapse shot: Professional solar technicians mounting sleek all-black photovoltaic solar panels onto the terracotta tile roof of a luxury modern mansion under bright morning sunlight, aluminum mounting rails being secured, clean architectural photography, 8k, photorealistic, no text, no captions.
+        </div>
+
+        <div class="prompt-snippet">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('Copiar', '').trim())">Copiar</button>
+          <strong>Cena 2 (Inversor & Baterias):</strong><br>
+          Cinematic time-lapse shot: A high-tech wall-mounted hybrid solar inverter and sleek white battery storage system being connected inside a pristine modern luxury garage, conduits and electrical cables neatly arranged, glowing neon green LED status lights illuminating smoothly, 8k resolution, crisp detail, no text, no captions.
+        </div>
+
+        <div class="prompt-snippet">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('Copiar', '').trim())">Copiar</button>
+          <strong>Cena 3 (Resultado - Ar-Condicionado Ligado):</strong><br>
+          Cinematic slow-motion shot: Inside an ultra-luxury modern living room with floor-to-ceiling glass windows, a sleek designer air conditioner smoothly blowing fresh cool air with a subtle blue LED glow, warm sunny weather outside with visible solar rooftop generating power, absolute comfort and tranquility, 8k architectural realism, no text, no captions.
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html" class="btn btn-solar">
+          <i class="fa-solid fa-arrow-left"></i> Voltar para a Landing Page Oficial do Dia 03
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Engine de Scrubber Interativo no Hover / Drag
+    const container = document.getElementById('playerScrubber');
+    const layers = document.querySelectorAll('.frame-layer');
+    const nodes = document.querySelectorAll('.step-node');
+    const fill = document.getElementById('scrubFill');
+    const statusEl = document.getElementById('telemetryStatus');
+    const effEl = document.getElementById('telemetryEfficiency');
+
+    const telemetryData = {
+      1: { status: 'Fase 1: Telhado Convencional (0 kW)', eff: 'Sem Geração • 100% Concessionária' },
+      2: { status: 'Fase 2: Instalação das Estruturas e Placas All-Black', eff: 'Montagem Mecânica • 0 kW' },
+      3: { status: 'Fase 3: Inversor & Bateria Conectados', eff: 'Homologação Ativa • 6.4 kWp' },
+      4: { status: 'Fase 4: Conforto Total (Ar-Condicionado a 21°C)', eff: '⚡ 11.7 kWp Gerando • Fatura Reduzida 95%' }
+    };
+
+    function setStep(step) {
+      layers.forEach(l => l.classList.toggle('active', parseInt(l.dataset.step) === step));
+      nodes.forEach(n => n.classList.toggle('active', parseInt(n.dataset.step) === step));
+      fill.style.width = `${step * 25}%`;
+      if (telemetryData[step]) {
+        statusEl.textContent = telemetryData[step].status;
+        effEl.textContent = telemetryData[step].eff;
+      }
+    }
+
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, x / rect.width));
+      let step = Math.ceil(pct * 4);
+      if (step < 1) step = 1;
+      if (step > 4) step = 4;
+      setStep(step);
+    });
+
+    nodes.forEach(n => {
+      n.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setStep(parseInt(n.dataset.step));
+      });
+    });
+  </script>
+</body>
+</html>
