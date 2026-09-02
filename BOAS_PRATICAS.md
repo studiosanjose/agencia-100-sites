@@ -63,30 +63,81 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## 🎬 4. Vídeos Animados com IA & Transições Visuais (O Diferencial de Alto Valor)
+## 🎬 4. Vídeos Animados com IA & Transições Visuais (O Padrão Google Vids)
 
-A imagem estática comunica autoridade, mas o **vídeo com movimento e transição de tempo retém a atenção e fecha vendas**.
+A imagem estática comunica autoridade, mas o **vídeo de evolução contínua sem textos retém a atenção e fecha vendas**.
 
-### A. Princípios de Aplicação de Vídeo
-1. **Vídeos de Transformação / Time-Lapse (Antes & Depois com IA)**:
-   - Gerar os frames de transição no Google Vids / Veo AI mostrando a evolução gradual (ex: rejuvenescimento facial, cura de melasma, restauração capilar).
-   - Sem textos poluidos ou narração robotizada: foco total na evolução visual da face ou produto.
-2. **Vídeos de Fundo Ambientais (Ambient Background Loop)**:
-   - Vídeos curtos (5 a 10s) em loop contínuo e silencioso com sobreposição escura/gradiente para destacar textos e CTAs.
-3. **Alternador de Modos (Slider Interativo + Vídeo Time-Lapse)**:
-   - Sempre oferecer ao visitante a escolha: interagir manualmente arrastando o slider OU assistir ao vídeo de transformação contínua.
+---
 
-### B. Boas Práticas Técnicas de Implementação em HTML5
-* **Atributos Obrigatórios para Mobile**:
-  ```html
-  <video autoplay loop muted playsinline poster="assets/capa.jpg">
-    <source src="assets/video.mp4" type="video/mp4">
-  </video>
-  ```
-* **Performance & Lazy Loading**:
-  - `muted` e `playsinline` são mandatórios para que o vídeo dê autoplay no Safari (iOS) e Chrome (Android).
-  - Sempre incluir `poster` para carregar instantaneamente enquanto o buffer do vídeo é montado.
-  - Comprimir o `.mp4` para manter o peso otimizado (< 4MB) e preservar a pontuação 90+ no Google PageSpeed.
+### A. O Fluxo Oficial de Criação com Google Vids (Padrão 3 Imagens)
+O Google Vids / Veo AI trabalha com até **3 imagens de referência** para criar a transição temporal fluida. A sequência oficial da agência deve sempre seguir:
+
+1. **Imagem 1 (O Ponto de Partida / Início)**:
+   - O estado inicial da obra, serviço ou produto (ex: telhado convencional limpo, pele antes do procedimento, terreno bruto).
+2. **Imagem 2 (A Execução Técnica / Conexão)**:
+   - O momento da engenharia e tecnologia em ação (ex: montagem dos módulos e inversores com LEDs verdes ativos, consultório em operação).
+3. **Imagem 3 (O Resultado Final / O Desejo do Cliente)**:
+   - A realização completa e o conforto entregue (ex: sala de alto padrão climatizada com ar-condicionado operando 100% com energia solar, rosto rejuvenescido).
+
+---
+
+### B. Padrão de Prompt Mestre para o Google Vids
+Todo prompt deve ser em inglês técnico, declarando o movimento contínuo e proibindo estritamente poluição visual:
+
+```text
+Cinematic 3-stage time-lapse transition: start with image 1 showing [Cena 1], seamlessly morph to image 2 showing [Cena 2 com iluminação e conexão técnica], then transition smoothly to image 3 [Cena 3 com o resultado final e conforto], 8k resolution, photorealistic architectural motion, smooth continuous flow, no text, no captions, no subtitles, no logos, no watermarks.
+```
+
+---
+
+### C. Padrão de Incorporação no Site (Banner Interativo Estilo GIF no Hover)
+O vídeo **nunca** deve parecer um player comum do YouTube com botões de play, voltar ou barras de rolagem. Ele deve se comportar como um **GIF animado de altíssima definição**:
+
+1. **Estrutura HTML**:
+   ```html
+   <div class="video-evolution-card" id="videoEvolutionCard">
+     <div class="video-evolution-wrapper">
+       <video id="evolutionVideo" class="evolution-video" loop muted playsinline poster="assets/capa.jpg">
+         <source src="assets/timelapse-obra.mp4" type="video/mp4">
+       </video>
+       <div class="video-ambient-badge">
+         <span class="badge-dot"></span>
+         Passe o mouse para ver a evolução da obra
+       </div>
+     </div>
+   </div>
+   ```
+
+2. **Mecânica JavaScript (Hover-to-Play sem reiniciar)**:
+   ```javascript
+   function initVideoEvolutionHover() {
+     const card = document.getElementById('videoEvolutionCard');
+     const video = document.getElementById('evolutionVideo');
+     if (!card || !video) return;
+
+     // Passou o mouse: roda de forma fluida
+     card.addEventListener('mouseenter', () => { video.play().catch(() => {}); });
+
+     // Tirou o mouse: pausa de onde parou (sem resetar cena)
+     card.addEventListener('mouseleave', () => { video.pause(); });
+
+     // Mobile: autoplay inteligente ao rolar a tela
+     if ('IntersectionObserver' in window && window.innerWidth <= 768) {
+       const obs = new IntersectionObserver((entries) => {
+         entries.forEach(e => {
+           if (e.isIntersecting) video.play().catch(() => {});
+           else video.pause();
+         });
+       }, { threshold: 0.5 });
+       obs.observe(card);
+     }
+   }
+   ```
+
+3. **Benefícios Técnicos & CRO**:
+   - **Zero Ruído**: Sem botões invasivos que distraiam o visitante.
+   - **Engajamento Imediato**: A interação no mouse desperta curiosidade e retém o lead na página.
+   - **Performance**: O atributo `poster` garante carregamento instantâneo no First Contentful Paint (FCP).
 
 ---
 
