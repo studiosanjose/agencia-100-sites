@@ -303,90 +303,56 @@
   </section>
 
   <!-- ==========================================================================
-       SHOWCASE ANTES & DEPOIS & TIME-LAPSE
+       SHOWCASE ANTES & DEPOIS & VÍDEO BANNER DE EVOLUÇÃO
        ========================================================================== -->
   <section class="showcase-section" id="antes-depois">
     <div class="container">
       <div class="section-header">
         <div class="badge">
-          <i class="fa-solid fa-sliders"></i>
-          Harmonia Arquitetônica & Evolução da Obra
+          <i class="fa-solid fa-solar-panel"></i>
+          Tecnologia & Evolução da Instalação
         </div>
-        <h2 class="section-title">Estética Invisível e Tecnologia Integrada</h2>
+        <h2 class="section-title">A Transformação Completa da sua Residência</h2>
         <p class="section-subtitle">
-          Alterne entre o comparativo estético de telhado e o time-lapse completo da instalação até a ativação da climatização com energia solar.
+          Compare a estética dos módulos fotovoltaicos no telhado e passe o mouse no banner abaixo para ver a evolução contínua da obra até o conforto total.
         </p>
-
-        <!-- Switcher de Modos -->
-        <div class="showcase-tabs" style="display: flex; justify-content: center; gap: 12px; margin-top: 24px;">
-          <button type="button" class="tab-btn active" id="tabSliderBtn" onclick="switchShowcaseMode('slider')">
-            <i class="fa-solid fa-left-right"></i> Slider Antes & Depois
-          </button>
-          <button type="button" class="tab-btn" id="tabTimelapseBtn" onclick="switchShowcaseMode('timelapse')">
-            <i class="fa-solid fa-film"></i> Time-Lapse da Obra (Hover)
-          </button>
-        </div>
       </div>
 
-      <!-- Modo 1: Split Slider -->
-      <div id="showcaseSliderView" class="showcase-view active">
-        <div class="split-wrapper">
-          <div class="split-container">
-            <!-- Imagem Antes (Fundo) -->
-            <div class="split-image before">
-              <span class="split-tag tag-before">Telhado Convencional</span>
-              <img src="assets/telhado-antes.jpg" alt="Telhado sem energia solar antes da instalação">
-            </div>
+      <!-- Split Slider Antes & Depois -->
+      <div class="split-wrapper">
+        <div class="split-container">
+          <!-- Imagem Antes (Fundo) -->
+          <div class="split-image before">
+            <span class="split-tag tag-before">Telhado Convencional</span>
+            <img src="assets/telhado-antes.jpg" alt="Telhado sem energia solar antes da instalação">
+          </div>
 
-            <!-- Imagem Depois (Com Clip Path) -->
-            <div class="split-image after">
-              <span class="split-tag tag-after">Com Sistema Helios All-Black</span>
-              <img src="assets/telhado-depois.jpg" alt="Telhado com módulos solares all-black instalados">
-            </div>
+          <!-- Imagem Depois (Com Clip Path) -->
+          <div class="split-image after">
+            <span class="split-tag tag-after">Com Sistema Helios All-Black</span>
+            <img src="assets/telhado-depois.jpg" alt="Telhado com módulos solares all-black instalados">
+          </div>
 
-            <!-- Handle Central Arrastável -->
-            <div class="split-handle">
-              <div class="split-handle-btn">
-                <i class="fa-solid fa-left-right"></i>
-              </div>
+          <!-- Handle Central Arrastável -->
+          <div class="split-handle">
+            <div class="split-handle-btn">
+              <i class="fa-solid fa-left-right"></i>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Modo 2: Time-Lapse Interativo da Obra -->
-      <div id="showcaseTimelapseView" class="showcase-view" style="display: none;">
-        <div class="timelapse-wrapper" style="max-width: 980px; margin: 0 auto 50px; position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-solar); box-shadow: var(--shadow-solar);">
-          <div class="player-container" id="mainPlayerScrubber" style="position: relative; aspect-ratio: 16/9; background: #000; cursor: ew-resize;">
-            <div class="frame-layer active" style="position: absolute; top:0; left:0; width:100%; height:100%; background-image: url('assets/telhado-antes.jpg'); background-size:cover; background-position:center; transition: opacity 0.3s ease;" data-step="1"></div>
-            <div class="frame-layer" style="position: absolute; top:0; left:0; width:100%; height:100%; background-image: url('assets/step1-instalacao.jpg'); background-size:cover; background-position:center; opacity:0; transition: opacity 0.3s ease;" data-step="2"></div>
-            <div class="frame-layer" style="position: absolute; top:0; left:0; width:100%; height:100%; background-image: url('assets/step2-inversor.jpg'); background-size:cover; background-position:center; opacity:0; transition: opacity 0.3s ease;" data-step="3"></div>
-            <div class="frame-layer" style="position: absolute; top:0; left:0; width:100%; height:100%; background-image: url('assets/step3-ar-condicionado.jpg'); background-size:cover; background-position:center; opacity:0; transition: opacity 0.3s ease;" data-step="4"></div>
-            
-            <video id="mainTimelapseVideo" style="display:none; width:100%; height:100%; object-fit:cover;" loop muted playsinline poster="assets/step1-instalacao.jpg">
-              <source src="assets/timelapse-solar.mp4" type="video/mp4">
-            </video>
-
-            <div style="position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 10; pointer-events: none;">
-              <span id="mainTelemetryStatus" style="background: rgba(6,9,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-solar); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; color: #fff; font-weight: 600;">
-                <i class="fa-solid fa-bolt" style="color: var(--solar-gold); margin-right: 6px;"></i> Fase 1: Telhado Convencional
-              </span>
-              <span id="mainTelemetryEff" style="background: rgba(6,9,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-emerald); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; color: var(--eco-emerald); font-weight: 600;">
-                Sem Geração Solar
-              </span>
-            </div>
-
-            <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; background: rgba(6,9,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-subtle); padding: 12px 16px; border-radius: 12px; z-index: 10;">
-              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 8px;">
-                <div class="main-step-node active" style="padding: 6px; border-radius: 6px; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--solar-amber); font-size: 0.72rem; color: var(--solar-gold); text-align: center; cursor: pointer;" data-step="1">1. Telhado</div>
-                <div class="main-step-node" style="padding: 6px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); font-size: 0.72rem; color: var(--text-muted); text-align: center; cursor: pointer;" data-step="2">2. Placas All-Black</div>
-                <div class="main-step-node" style="padding: 6px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); font-size: 0.72rem; color: var(--text-muted); text-align: center; cursor: pointer;" data-step="3">3. Inversor & Baterias</div>
-                <div class="main-step-node" style="padding: 6px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); font-size: 0.72rem; color: var(--text-muted); text-align: center; cursor: pointer;" data-step="4">4. Ar-Condicionado 100% Solar</div>
-              </div>
-              <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;">
-                <div id="mainScrubFill" style="height: 100%; width: 25%; background: linear-gradient(90deg, var(--solar-amber), var(--solar-gold), var(--eco-emerald)); transition: width 0.15s ease;"></div>
-              </div>
-            </div>
+      <!-- Banner de Vídeo Animado (Hover-to-Play estilo GIF) -->
+      <div class="video-evolution-card" id="videoEvolutionCard">
+        <div class="video-evolution-wrapper">
+          <video id="evolutionVideo" class="evolution-video" loop muted playsinline poster="assets/transformacao-solar-completa.jpg">
+            <source src="assets/timelapse-solar.mp4" type="video/mp4">
+          </video>
+          
+          <div class="video-ambient-badge">
+            <span class="badge-dot"></span>
+            <i class="fa-solid fa-play" style="font-size: 0.75rem; margin-right: 4px;"></i>
+            Passe o mouse para reproduzir a evolução da obra
           </div>
         </div>
       </div>
@@ -415,7 +381,6 @@
         </div>
       </div>
 
-    </div>
   </section>
 
   <!-- ==========================================================================

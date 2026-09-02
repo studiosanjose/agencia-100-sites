@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
  * HELIOS ENERGY & ENGENHARIA SOLAR - INTERACTIVE APP ENGINE (DIA 03)
- * Real-time Solar Economy Calculator, Split Slider & CRO Triggers
+ * Real-time Solar Economy Calculator, Split Slider & Video GIF on Hover
  * ==========================================================================
  */
 
@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initSolarCalculator();
   initSplitSlider();
+  initVideoEvolutionHover();
   initFaqAccordion();
   initAnimatedCounters();
 });
@@ -86,29 +87,21 @@ function initSolarCalculator() {
   function updateCalculations() {
     const bill = parseFloat(rangeInput.value) || 1200;
     
-    // Atualiza o display do slider
     if (billDisplay) {
       billDisplay.textContent = formatBRL(bill);
     }
 
-    // Cálculos de Engenharia Fotovoltaica
-    // Taxa média de redução líquida (92% a 95% considerando taxa de disponibilidade mínima)
     const reductionRate = currentModalidade === 'Industrial' ? 0.90 : 0.94;
     const monthlySavings = bill * reductionRate;
     const annualSavings = monthlySavings * 12;
-    
-    // Projeção em 25 anos com reajuste tarifário médio de inflação de energia (5.5% a.a.)
     const savings25Years = annualSavings * 25 * 1.32;
 
-    // Estimativa de potência do sistema (tarifa média R$ 0,95/kWh e produtividade 135 kWh/kWp/mês)
     const estimatedKWhMonth = bill / 0.95;
     const estimatedKWp = (estimatedKWhMonth / 135).toFixed(1);
 
-    // Métricas ecológicas (fator de emissão médio SIN Brasil 0.085 kg CO2/kWh)
     const annualCO2Tons = ((estimatedKWhMonth * 12 * 0.085) / 1000).toFixed(1);
     const treesEquivalent = Math.round(annualCO2Tons * 7.2);
 
-    // Atualiza os elementos na tela com transição suave
     if (monthlyEconomyEl) monthlyEconomyEl.textContent = formatBRL(monthlySavings) + ' /mês';
     if (annualEconomyEl) annualEconomyEl.textContent = formatBRL(annualSavings);
     if (economy25El) economy25El.textContent = formatBRL(savings25Years);
@@ -116,9 +109,8 @@ function initSolarCalculator() {
     if (co2El) co2El.textContent = `${annualCO2Tons} ton/ano`;
     if (treesEl) treesEl.textContent = `${treesEquivalent} árvores/ano`;
 
-    // Atualiza o link do botão de WhatsApp com a mensagem personalizada
     if (whatsappBtn) {
-      const phoneNumber = '5511999998888'; // Número de demonstração da agência
+      const phoneNumber = '5511999998888';
       const textMsg = `Olá! Realizei uma simulação no site da Helios Energy:%0A` +
         `• *Modalidade:* ${currentModalidade}%0A` +
         `• *Conta Atual:* ${formatBRL(bill)}/mês%0A` +
@@ -131,7 +123,7 @@ function initSolarCalculator() {
   }
 
   rangeInput.addEventListener('input', updateCalculations);
-  updateCalculations(); // Disparo inicial
+  updateCalculations();
 }
 
 /* ==========================================================================
@@ -150,7 +142,6 @@ function initSplitSlider() {
     const rect = container.getBoundingClientRect();
     let position = ((x - rect.left) / rect.width) * 100;
 
-    // Limites de segurança entre 5% e 95%
     if (position < 5) position = 5;
     if (position > 95) position = 95;
 
@@ -158,7 +149,6 @@ function initSplitSlider() {
     afterImage.style.clipPath = `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)`;
   }
 
-  // Eventos de Mouse
   container.addEventListener('mousedown', (e) => {
     isDragging = true;
     setSliderPosition(e.clientX);
@@ -173,7 +163,6 @@ function initSplitSlider() {
     isDragging = false;
   });
 
-  // Eventos Touch (Mobile)
   container.addEventListener('touchstart', (e) => {
     isDragging = true;
     if (e.touches.length > 0) {
@@ -194,7 +183,44 @@ function initSplitSlider() {
 }
 
 /* ==========================================================================
-   4. FAQ ACCORDION
+   4. VÍDEO BANNER DE EVOLUÇÃO (HOVER-TO-PLAY ESTILO GIF)
+   ========================================================================== */
+function initVideoEvolutionHover() {
+  const card = document.getElementById('videoEvolutionCard');
+  const video = document.getElementById('evolutionVideo');
+
+  if (!card || !video) return;
+
+  // Ao passar o mouse: reproduz suavemente
+  card.addEventListener('mouseenter', () => {
+    video.play().catch(() => {
+      // Autoplay sem restrição
+    });
+  });
+
+  // Ao retirar o mouse: pausa
+  card.addEventListener('mouseleave', () => {
+    video.pause();
+  });
+
+  // Suporte para Mobile (Auto-play quando rolar até o elemento)
+  if ('IntersectionObserver' in window && window.innerWidth <= 768) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    videoObserver.observe(card);
+  }
+}
+
+/* ==========================================================================
+   5. FAQ ACCORDION
    ========================================================================== */
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
@@ -204,13 +230,9 @@ function initFaqAccordion() {
     if (question) {
       question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
-        
-        // Fecha todos os outros
         faqItems.forEach(other => {
           if (other !== item) other.classList.remove('active');
         });
-
-        // Alterna o atual
         item.classList.toggle('active', !isActive);
       });
     }
@@ -218,7 +240,7 @@ function initFaqAccordion() {
 }
 
 /* ==========================================================================
-   5. CONTADORES NUMÉRICOS ANIMADOS (COUNT-UP NA ROLAGEM)
+   6. CONTADORES NUMÉRICOS ANIMADOS (COUNT-UP)
    ========================================================================== */
 function initAnimatedCounters() {
   const counters = document.querySelectorAll('.stat-number[data-target]');
@@ -260,78 +282,3 @@ function initAnimatedCounters() {
 
   counters.forEach(counter => observer.observe(counter));
 }
-
-/* ==========================================================================
-   6. TIME-LAPSE SCRUBBER & SHOWCASE MODE SWITCHER
-   ========================================================================== */
-window.switchShowcaseMode = function(mode) {
-  const sliderView = document.getElementById('showcaseSliderView');
-  const timelapseView = document.getElementById('showcaseTimelapseView');
-  const tabSliderBtn = document.getElementById('tabSliderBtn');
-  const tabTimelapseBtn = document.getElementById('tabTimelapseBtn');
-
-  if (mode === 'slider') {
-    if (sliderView) sliderView.style.display = 'block';
-    if (timelapseView) timelapseView.style.display = 'none';
-    if (tabSliderBtn) tabSliderBtn.classList.add('active');
-    if (tabTimelapseBtn) tabTimelapseBtn.classList.remove('active');
-  } else {
-    if (sliderView) sliderView.style.display = 'none';
-    if (timelapseView) timelapseView.style.display = 'block';
-    if (tabSliderBtn) tabSliderBtn.classList.remove('active');
-    if (tabTimelapseBtn) tabTimelapseBtn.classList.add('active');
-    initMainTimelapseScrubber();
-  }
-};
-
-function initMainTimelapseScrubber() {
-  const container = document.getElementById('mainPlayerScrubber');
-  if (!container || container.dataset.initialized) return;
-  container.dataset.initialized = 'true';
-
-  const layers = container.querySelectorAll('.frame-layer');
-  const nodes = container.querySelectorAll('.main-step-node');
-  const fill = document.getElementById('mainScrubFill');
-  const statusEl = document.getElementById('mainTelemetryStatus');
-  const effEl = document.getElementById('mainTelemetryEff');
-
-  const telemetryData = {
-    1: { status: 'Fase 1: Telhado Convencional (0 kW)', eff: 'Sem Geração Solar' },
-    2: { status: 'Fase 2: Instalação das Estruturas e Placas All-Black', eff: 'Montagem Mecânica • 0 kW' },
-    3: { status: 'Fase 3: Inversor & Bateria Conectados', eff: 'Homologação Ativa • 6.4 kWp' },
-    4: { status: 'Fase 4: Conforto Total (Ar-Condicionado 21°C)', eff: '⚡ 11.7 kWp Gerando • Fatura -95%' }
-  };
-
-  function setStep(step) {
-    layers.forEach(l => l.style.opacity = parseInt(l.dataset.step) === step ? '1' : '0');
-    nodes.forEach(n => {
-      const isAct = parseInt(n.dataset.step) === step;
-      n.style.background = isAct ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255,255,255,0.05)';
-      n.style.borderColor = isAct ? 'var(--solar-amber)' : 'var(--border-subtle)';
-      n.style.color = isAct ? 'var(--solar-gold)' : 'var(--text-muted)';
-    });
-    if (fill) fill.style.width = `${step * 25}%`;
-    if (telemetryData[step]) {
-      if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-bolt" style="color: var(--solar-gold); margin-right: 6px;"></i> ${telemetryData[step].status}`;
-      if (effEl) effEl.textContent = telemetryData[step].eff;
-    }
-  }
-
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const pct = Math.max(0, Math.min(1, x / rect.width));
-    let step = Math.ceil(pct * 4);
-    if (step < 1) step = 1;
-    if (step > 4) step = 4;
-    setStep(step);
-  });
-
-  nodes.forEach(n => {
-    n.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setStep(parseInt(n.dataset.step));
-    });
-  });
-}
-
