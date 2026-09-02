@@ -12,14 +12,14 @@ Construir "do nada" gera layouts genéricos. O padrão oficial da agência segue
 flowchart LR
     A[1. Definição do Nicho] --> B[2. Mineração de 2 a 4 Referências]
     B --> C[3. Extração do Design System]
-    C --> D[4. Geração de Fotos IA & Código]
+    C --> D[4. Geração de Fotos/Vídeos IA & Código]
     D --> E[5. Ajustes & Deploy GitHub]
 ```
 
 1. **Definição do Nicho do Dia**: Escolha do segmento de alto ticket.
 2. **Mineração de Referências**: O usuário e a IA selecionam 2 a 4 sites reais com design de ponta.
 3. **Extração de Design System**: A IA analisa as referências e extrai tipografia, paleta clara/escura, micro-interações e hierarquia de conversão.
-4. **Construção & Ativos de IA**: Geração de fotos ultra-realistas dos especialistas e codificação em HTML5, CSS e JS puro.
+4. **Construção & Ativos de IA**: Geração de fotos ultra-realistas dos especialistas, vídeos animados de evolução/produto e codificação em HTML5, CSS e JS puro.
 5. **Validação & Deploy Contínuo**: Ajuste visual imediato no navegador e publicação no GitHub Pages.
 
 ---
@@ -63,7 +63,34 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## 🚀 4. Engenharia de Conversão (CRO) & WhatsApp
+## 🎬 4. Vídeos Animados com IA & Transições Visuais (O Diferencial de Alto Valor)
+
+A imagem estática comunica autoridade, mas o **vídeo com movimento e transição de tempo retém a atenção e fecha vendas**.
+
+### A. Princípios de Aplicação de Vídeo
+1. **Vídeos de Transformação / Time-Lapse (Antes & Depois com IA)**:
+   - Gerar os frames de transição no Google Vids / Veo AI mostrando a evolução gradual (ex: rejuvenescimento facial, cura de melasma, restauração capilar).
+   - Sem textos poluidos ou narração robotizada: foco total na evolução visual da face ou produto.
+2. **Vídeos de Fundo Ambientais (Ambient Background Loop)**:
+   - Vídeos curtos (5 a 10s) em loop contínuo e silencioso com sobreposição escura/gradiente para destacar textos e CTAs.
+3. **Alternador de Modos (Slider Interativo + Vídeo Time-Lapse)**:
+   - Sempre oferecer ao visitante a escolha: interagir manualmente arrastando o slider OU assistir ao vídeo de transformação contínua.
+
+### B. Boas Práticas Técnicas de Implementação em HTML5
+* **Atributos Obrigatórios para Mobile**:
+  ```html
+  <video autoplay loop muted playsinline poster="assets/capa.jpg">
+    <source src="assets/video.mp4" type="video/mp4">
+  </video>
+  ```
+* **Performance & Lazy Loading**:
+  - `muted` e `playsinline` são mandatórios para que o vídeo dê autoplay no Safari (iOS) e Chrome (Android).
+  - Sempre incluir `poster` para carregar instantaneamente enquanto o buffer do vídeo é montado.
+  - Comprimir o `.mp4` para manter o peso otimizado (< 4MB) e preservar a pontuação 90+ no Google PageSpeed.
+
+---
+
+## 🚀 5. Engenharia de Conversão (CRO) & WhatsApp
 
 1. **O Humano como Alma do Site**:
    - Sempre destacar os profissionais titulares/fundadores com fotos verticais de alta qualidade e credenciais visíveis.
@@ -76,7 +103,7 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## 🔍 5. SEO Técnico & Estruturação Semântica
+## 🔍 6. SEO Técnico & Estruturação Semântica
 
 1. **Marcação Semântica Única**:
    - Apenas **um único `<h1>` por página** contendo a palavra-chave principal e a proposta de valor.
@@ -95,7 +122,7 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## ⚡ 6. Performance & Core Web Vitals
+## ⚡ 7. Performance & Core Web Vitals
 
 1. **Meta de Velocidade**:
    - Google PageSpeed Insights **90+ no Mobile e Desktop**.
@@ -108,7 +135,7 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## 🛡️ 7. Conformidade Ética & Regulamentações por Nicho
+## 🛡️ 8. Conformidade Ética & Regulamentações por Nicho
 
 - **Advocacia (OAB)**: Respeitar o Provimento nº 205/2021 da OAB (caráter informativo, sem mercantilização agressiva ou promessa de causa ganha).
 - **Medicina / Odonto (CFM / CFO)**: Indicação clara de CRM/CRO e RQE (registro de qualificação de especialista), sem fotos apelativas ou promessas milagrosas.
@@ -116,7 +143,7 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## 🔄 8. Fluxo de Git & Deploy Profissional
+## 🔄 9. Fluxo de Git & Deploy Profissional
 
 1. **Padrão Conventional Commits**:
    - `feat(modulo):` para novas funcionalidades.
@@ -128,13 +155,13 @@ Permite visualizar landing pages reais e ativas que estão recebendo tráfego pa
 
 ---
 
-## ✅ 9. Checklist Pré-Entrega (10 Passos antes de publicar)
+## ✅ 10. Checklist Pré-Entrega (10 Passos antes de publicar)
 
 - [ ] 1. O site abre perfeitamente no celular (testar em iPhone e Android)?
 - [ ] 2. Nenhum elemento ficou sobreposto no menu ou no rodapé?
 - [ ] 3. Todos os links de WhatsApp abrem a conversa com o número e mensagem corretos?
 - [ ] 4. Há apenas um `<h1>` na página?
-- [ ] 5. As imagens têm descrições no atributo `alt`?
+- [ ] 5. As imagens e vídeos têm descrições no atributo `alt` e `poster`?
 - [ ] 6. O Schema.org JSON-LD está validado sem erros?
 - [ ] 7. Os números animados (count-up) disparam suavemente na rolagem?
 - [ ] 8. As máscaras de formulário (telefone/DDD) funcionam sem travar?
