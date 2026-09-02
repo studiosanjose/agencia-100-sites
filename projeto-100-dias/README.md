@@ -5,10 +5,10 @@ Este projeto foi desenhado para dominar o desenvolvimento web na prática e cria
 
 ---
 
-## 📊 Progresso Geral: `2 / 100` Concluídos
+## 📊 Progresso Geral: `3 / 100` Concluídos
 
 ```
-[██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 2% Concluído
+[███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 3% Concluído
 ```
 
 ---
@@ -29,7 +29,7 @@ Este projeto foi desenhado para dominar o desenvolvimento web na prática e cria
 ### 🟡 Fase 1: Landing Pages de Alta Conversão (Dias 01 a 20)
 - [x] **[Dia 01 - Advocacia Premium & Consultoria Jurídica](./dia-01/)** *(Vanguard & Prado Advogados)* — Direito Empresarial, Tributário e Trabalhista com Diagnóstico Jurídico Interativo.
 - [x] **[Dia 02 - Clínica de Estética Avançada & Dermatologia](./dia-02/)** *(Dra. Sofia Moraes)* — Harmonização Facial, Bioestimuladores, Split Slider Antes/Depois Interativo e Quiz de Diagnóstico 3 Passos.
-- [ ] **Dia 03 - Empresa de Energia Solar & Engenharia** — Calculadora de economia de energia e captação de leads.
+- [x] **[Dia 03 - Empresa de Energia Solar & Engenharia](./dia-03/)** *(Helios Energy)* — Calculadora dinâmica de economia em 25 anos, Split Slider de telhado monocristalino All-Black e soluções Residencial, Comercial e Agro.
 - [ ] **Dia 04 - Odontologia Especializada & Implantes** — Agendamento de avaliação e tour da clínica.
 - [ ] **Dia 05 - Escritório de Contabilidade & BPO Financeiro** — Tabela comparativa de planos para empresas.
 - [ ] **Dia 06 - Academia Premium & Estúdio de CrossFit** — Tabela de passes, cálculo de IMC e aula experimental.
